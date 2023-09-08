@@ -1,0 +1,195 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model Account {
+  id                 String    @id @default(cuid())
+  userId             Int
+  providerType       String
+  providerId         String
+  providerAccountId  String
+  refreshToken       String?
+  accessToken        String?
+  accessTokenExpires DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  user               User      @relation(fields: [userId], references: [id])
+
+  @@unique([providerId, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  userId       Int
+  expires      DateTime
+  sessionToken String   @unique
+  accessToken  String   @unique
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  user         User     @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id               Int              @id @default(autoincrement())
+  firstName        String
+  lastName         String
+  dob              DateTime
+  email            String?          @unique
+  phoneNumber      String?          @unique
+  emailVerified    DateTime?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  registrationDate  DateTime        @default(now())
+  isAdmin     Boolean @default(false) // CLIENT ACCESS ONLY
+  gender           String?
+  age              Int?
+  ethnicity        String?
+  education        String?
+  maritalStatus    String?
+  languages        String?
+  employmentStatus String?          
+  householdIncome  Float?          
+  livingStatus     String?          
+  accounts          Account[]
+  sessions          Session[]
+  progress          Progress[]
+  consultations     Consultation[]
+  intakeTests       IntakeTest[]
+  userBadges        UserBadge[]
+}
+
+
+model Badge {
+  id         Int         @id @default(autoincrement())
+  name       String
+  criteria   String      // A description of what's required to earn the badge
+  imageUrl   String      // A URL to the badge image/icon
+  users      UserBadge[] // Relation to users who have this badge
+}
+
+model UserBadge {
+  userId   Int
+  user     User @relation(fields: [userId], references: [id])
+  badgeId  Int
+  badge    Badge @relation(fields: [badgeId], references: [id])
+  awardedAt DateTime @default(now())
+
+  @@id([userId, badgeId])
+}
+
+
+model IntakeTest {
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id])
+  topic      String   // ex. "Earn", "Spend", etc.
+  score      Int      // Score from 1-10
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+
+model VerificationRequest {
+  id         String   @id @default(cuid())
+  identifier String
+  token      String   @unique
+  expires    DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([identifier, token])
+}
+
+
+
+model Curriculum {
+  id        Int       @id @default(autoincrement())
+  title     String
+  modules   Module[]
+}
+
+
+model ModuleQuiz {
+  id          Int      @id @default(autoincrement())
+  moduleId    Int
+  module      Module   @relation(fields: [moduleId], references: [id])
+  questions   String[] // Could be an array or another model for more structure
+  passed      Boolean
+  score       Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SubModuleQuiz {
+  id             Int       @id @default(autoincrement())
+  subModuleId    Int
+  subModule      SubModule @relation(fields: [subModuleId], references: [id])
+  questions      String[] // Similar as above
+  passed         Boolean
+  score          Int
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+
+model Module {
+  id          Int         @id @default(autoincrement())
+  title       String
+  curriculumId Int
+  curriculum  Curriculum @relation(fields: [curriculumId], references: [id])
+  subModules  SubModule[]
+  moduleQuiz  ModuleQuiz[]
+}
+
+model SubModule {
+  id        Int      @id @default(autoincrement())
+  title     String
+  moduleId  Int
+  module    Module   @relation(fields: [moduleId], references: [id])
+  lessons   Lesson[]
+  subModuleQuiz SubModuleQuiz[]
+}
+
+model Lesson {
+  id          Int        @id @default(autoincrement())
+  title       String
+  content     String
+  subModuleId Int
+  subModule   SubModule  @relation(fields: [subModuleId], references: [id])
+  progress    Progress[]
+}
+
+model Progress {
+  id       Int    @id @default(autoincrement())
+  lessonId Int
+  lesson   Lesson @relation(fields: [lessonId], references: [id])
+  userId   Int
+  user     User   @relation(fields: [userId], references: [id])
+  date     DateTime @default(now())
+}
+
+model Advisor {
+  id          Int           @id @default(autoincrement())
+  name        String
+  email       String        @unique
+  specialization String
+  rate        Float
+  location    String
+  consultations Consultation[]
+}
+
+model Consultation {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  advisorId Int
+  advisor   Advisor  @relation(fields: [advisorId], references: [id])
+  date      DateTime @default(now())
+}
