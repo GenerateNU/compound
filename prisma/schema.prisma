@@ -5,6 +5,14 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model spatial_ref_sys {
+  srid      Int     @id
+  auth_name String? @db.VarChar(256)
+  auth_srid Int?
+  srtext    String? @db.VarChar(2048)
+  proj4text String? @db.VarChar(2048)
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -116,7 +124,7 @@ model Curriculum {
 }
 
 
-model ModuleQuiz {
+model ModuleExam {
   id          Int      @id @default(autoincrement())
   moduleId    Int
   module      Module   @relation(fields: [moduleId], references: [id])
@@ -145,7 +153,7 @@ model Module {
   curriculumId Int
   curriculum  Curriculum @relation(fields: [curriculumId], references: [id])
   subModules  SubModule[]
-  moduleQuiz  ModuleQuiz[]
+  moduleQuiz  ModuleExam[]
 }
 
 model SubModule {
