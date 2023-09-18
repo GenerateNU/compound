@@ -52,6 +52,8 @@ model User {
   email            String?          @unique
   phoneNumber      String?          @unique
   emailVerified    DateTime?
+  password         String?
+  verified        Boolean          @default(false)
   createdAt        DateTime         @default(now())
   updatedAt        DateTime         @updatedAt
   registrationDate  DateTime        @default(now())

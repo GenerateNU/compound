@@ -1,6 +1,6 @@
-// import Users from "@/models/users";
-// import prisma from "lib/db";
+import Users from "@/models/users";
+import prisma from "./client";
 
-// const persistentUserInstance = new Users(prisma.users);
+const persistentUserInstance = new Users(prisma.user);
 
-// export default persistentUserInstance;
+export default persistentUserInstance;
