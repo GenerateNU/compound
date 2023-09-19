@@ -1,5 +1,5 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
-import prisma from "../prisma/db";
+import prisma from "../prisma/client";
 // import { authOptions } from "@auth/[...nextauth]";
 import { getServerSession, Session } from "next-auth";
 import { User } from "@prisma/client";
@@ -38,7 +38,7 @@ export default class Utils {
     const response: User[] = await prisma.user.findMany({
       where: {
         email: email,
-       // verified: true,
+        // verified: true,
       },
     });
 
