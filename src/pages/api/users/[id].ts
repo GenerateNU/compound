@@ -7,7 +7,7 @@ import { InsensitiveUserInformation } from "@/models/users";
 
 
 type Message = {
-    message?: string | InsensitiveUserInformation | null;
+    message?: string;
   };
   
 
