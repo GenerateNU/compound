@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient,User } from "@prisma/client";
 import isEmail from "isemail";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
@@ -16,6 +16,35 @@ const UNIQUE_CONSTRAINT_ERROR_CODE = "P2002";
 
 export default class Users {
   constructor(private readonly usersDB: PrismaClient["user"]) {}
+
+
+  public async updateUserById(id: number, updatedData: object) {
+    try {
+      const UserInformation: User | null = await this.usersDB.update({
+        where: {id: 
+          id},
+        data: updatedData,
+      })
+      return UserInformation
+    }
+    catch (err) {
+      return err
+    }
+  }
+
+  public async getUserById(id: number) {
+    try {
+      const UserInformation: User | null = await this.usersDB.findUnique({
+        where: {
+          id : id
+      },
+      })
+      return UserInformation
+     }
+     catch (err) {
+      return err
+     }
+  }
 
   public async signUp(data: UserData) {
     try {
