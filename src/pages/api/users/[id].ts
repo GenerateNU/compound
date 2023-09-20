@@ -6,7 +6,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
 import Users from "@/models/users";
 import { error } from "console";
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, User } from '@prisma/client';
 const prisma = new PrismaClient();
 
 type Message = {
@@ -81,6 +81,21 @@ async function updateUser(
     return res.status(403).send({ message: String(error) });
 
     }
+
+    const reqProp = ['firstName', 'lastName', 'dob', 'phoneNumber', 'email', 'emailVerified',
+     'gender', 'age', 'ethnicity', 'education', 'maritalStatus', 'password', 'verified', 
+        'isAdmin', 'languages', 'employmentStatus', 'householdIncome', 'livingStatus'];
+    const missProp = []
+
+    // this chunk ensures that the needed items for a put requests are there and if not lets the user know what is missing
+    for (const prop of reqProp) {
+        if (req.body[prop] === undefined) {
+          missProp.push(prop);
+        }
+      }
+      if (missProp.length > 0) {
+        return res.status(400).json({ error: `Missing required properties: ${missProp.join(', ')}` });
+      }
 
     try {
     const user = await persistentUserInstance.getUserById(id);
