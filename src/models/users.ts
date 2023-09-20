@@ -12,24 +12,39 @@ interface UserData {
   [key: string]: any;
 }
 
+// Uer Information that is Insensitive
+export interface InsensitiveUserInformation {
+  email?: string | null,
+  phoneNumber?: string | null,
+  firstName?: string | null,
+  lastName?: string | null,
+}
 const UNIQUE_CONSTRAINT_ERROR_CODE = "P2002";
 
 export default class Users {
   constructor(private readonly usersDB: PrismaClient["user"]) {}
 
+  // Get Insensitive User Information By ID
   public async getUserById(id: number) {
 
     try {
-      const UserInformation: User | null = await this.usersDB.findUnique({
+      // Select Insensitive User Information from Database based on ID
+      const UserInformation: InsensitiveUserInformation | null = await this.usersDB.findUnique({
         where: {
           id
         },
-      })
-
-      return UserInformation
+        select: {
+          email: true,
+          phoneNumber: true,
+          firstName: true,
+          lastName: true,
+        }
+      });
+      
+      return UserInformation;
     }
     catch (Error) {
-      throw Error
+      throw "Error: User ID is not an Number";
     }
   }
 

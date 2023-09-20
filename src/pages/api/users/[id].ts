@@ -3,10 +3,11 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import persistentUserInstance from "../../../../prisma/persistentUserInstance";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
-import { User } from "@prisma/client";
+import { InsensitiveUserInformation } from "@/models/users";
+
 
 type Message = {
-    message: string | User | null;
+    message?: string | InsensitiveUserInformation | null;
   };
   
 
@@ -29,21 +30,16 @@ export default async function handler(
 
 async function getUser(
   req: NextApiRequest,
-  res: NextApiResponse<Message>
+  res: NextApiResponse<Message | InsensitiveUserInformation>
 ) {
-    let id: number;
+    let id = Number(req.query.id);
 
     try {
-        id = Number(req.query.id)
-    if ( typeof id !== 'number') {
-        throw Error('Please input an Integer')
-    }
-    } catch (error) {
-        return res.status(403).send({ message: String(error) });
-    }
-    try {
         const userInfo = await persistentUserInstance.getUserById(id);
-        return res.status(200).send({ message: userInfo });
+        if (!userInfo || Object.keys(userInfo).length === 0) {
+          return res.status(404).send({message: "User not found"})
+        }
+        return res.status(200).send(userInfo);
     } catch (error) {
         return res.status(403).send({ message: String(error) });
     }
