@@ -18,6 +18,8 @@ export default class Users {
   constructor(private readonly usersDB: PrismaClient["user"]) {}
 
 
+  //updates the user of the given id with the given data given of type object and returns the userinformation 
+  // which is shown nowhere or returns an err
   public async updateUserById(id: number, updatedData: object) {
     try {
       const UserInformation: User | null = await this.usersDB.update({
@@ -28,10 +30,11 @@ export default class Users {
       return UserInformation
     }
     catch (err) {
-      return err
+      throw "Error: there is not proper data that was given"
     }
   }
 
+  //gets the user id number to find if there is a singular user with the id number and returns the info it has
   public async getUserById(id: number) {
     try {
       const UserInformation: User | null = await this.usersDB.findUnique({
@@ -42,7 +45,7 @@ export default class Users {
       return UserInformation
      }
      catch (err) {
-      return err
+      throw "User is not an integer"
      }
   }
 

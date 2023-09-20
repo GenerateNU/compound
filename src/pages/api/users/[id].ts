@@ -21,6 +21,9 @@ export default async function handler(
     console.log("hello")
   const supportedRequestMethods: { [key: string]: Function } = {
     GET: getUser,
+    // these two below are currently seperated with differnet functions in case there is any 
+    // edits needed to be made to a patch or put to ensure
+    // a more secure and validated request other than the built in prisma checks
     PUT: updateUser,
     PATCH: updateUserPatch,
   };
@@ -31,6 +34,8 @@ export default async function handler(
   return res.status(405).send({ message: "request method not supported" });
 }
 
+//this is the get function which simply takes in the id given fro mthe request query and then checks to see if that number 
+// is a valid id to then is confirming that the user exists
 async function getUser(
     req: NextApiRequest,
     res: NextApiResponse
@@ -56,6 +61,11 @@ async function getUser(
     
 }
 
+
+
+//updating user with a PULL request this will check if the user exits attempts to get the user 
+// as a double confimration that there is data for this user then it will pass to a method in ../models/users.ts
+// then comes back adn prints if it was succesful update or not
 async function updateUser(
     req: NextApiRequest,
     res: NextApiResponse
@@ -80,18 +90,20 @@ async function updateUser(
 
     try {
         const updateUser = await persistentUserInstance.updateUserById(id,req.body);
-        return res.status(200).send({ message: updateUser })
+        return res.status(200).send({ message: "updated user"})
     } catch(error) {
-        return res.status(403).send({ message: String(error) });
+        return res.status(403).send({ message: "user was not properly updated" });
     }
 
 }
 
+//updating user with a PATCH request this will check if the user exits attempts to get the user 
+// as a double confimration that there is data for this user then it will pass to a method in ../models/users.ts
+// which is give the query body then comes back and prints if it was succesful update or not
 async function updateUserPatch(
     req: NextApiRequest,
     res: NextApiResponse
 ) {
-
     let id: number;
 
     try { 
@@ -99,27 +111,19 @@ async function updateUserPatch(
     if(typeof id !== 'number') {
         throw Error ("plesae input number")
     } } catch (error) {
-    return res.status(403).send({ message: String(error) });
-
+    throw res.status(403).send({ message: String(error) });
 
     }
-    
-
-    // const updatedData = {'email': String, 'phoneNumber': String, 'firstName': String, 
-    //                        'lastName': String, 'dob': Date, 'password': String};
-    //const {firstName} = req.body;
-
-    
     try {
     const user = await persistentUserInstance.getUserById(id);
     } catch (err) {
-        return res.status(404).send({ message: "User not found" });
+        throw res.status(404).send({ message: "User not found" });
     }
 
     try {
         const updateUser = await persistentUserInstance.updateUserById(id, req.body);
-        return res.status(200).send({ message: updateUser })
+        throw res.status(200).send({ message: "updated user thank you" })
     } catch(error) {
-        return res.status(403).send({ message: String(error) });
+        throw res.status(403).send({ message: "user was not properly updated in patch" });
     }
 }
