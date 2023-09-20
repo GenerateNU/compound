@@ -28,7 +28,7 @@ async function registerIntakeExam(
 ) {
     try {
         await persistentIntakeTestInstance.takeTest({
-            ...req.body
+            ...req.body,
         });
     }
     catch (error) {

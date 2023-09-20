@@ -18,14 +18,15 @@ export default class IntakeTest {
 
     public async takeTest(data: IntakeTestData) {
         try {
-            data.intakeTests.forEach((value) => {
+            data.intakeTests.forEach(async (value) => {
                 const dataEntry = {
                     userId: data.userId,
                     topic:value.topic,
                     score:value.score,
                     createdAt: new Date(),
                 }
-                this.intakeDB.create({data: dataEntry});
+                await this.intakeDB.create({data: dataEntry});
+                console.log(dataEntry);
             })
         } catch (error) {
             if (error instanceof PrismaClientKnownRequestError) {
