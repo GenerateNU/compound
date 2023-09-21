@@ -1,16 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import isEmail from "isemail";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
-
-interface UserData {
-  email: string;
-  phoneNumber: string;
-  firstName: string;
-  lastName: string;
-  dob: Date;
-  password: string;
-  [key: string]: any;
-}
+import { UserData, UserReturnType } from "../../lib/CompoundTypes";
+import { data } from "autoprefixer";
 
 const UNIQUE_CONSTRAINT_ERROR_CODE = "P2002";
 
@@ -33,6 +25,18 @@ export default class Users {
         throw error;
       }
     }
+  }
+
+  public async signUpProviderDetails(emailFromProvider: string ) {
+    const userData: UserData = {
+      email: '',
+      phoneNumber: '',
+      firstName: '',
+      lastName: '',
+      dob: new Date(),
+    }
+    
+    // await this.usersDB.create({userData});
   }
 
   private setDefaultAttributes(data: UserData): UserData {
@@ -58,5 +62,26 @@ export default class Users {
   private validateInputData(data: UserData) {
     this.validateEmail(data.email);
     // this.validatePhoneNumber(data.phone_number); // TODO: uncomment this
+  }
+
+  public async getUser(email: string) {
+    const user  = await this.usersDB.findUnique({
+        where:{email: email}
+    })
+    
+    if(user === null){
+      throw new Error("user not found")
+    }
+
+    const userDetails: UserReturnType = {
+      email: user.email as string,
+      id: user.id as number,
+      firstName: user.firstName,
+      lastName: user.lastName,
+    }
+
+    return userDetails;
+    
+
   }
 }
