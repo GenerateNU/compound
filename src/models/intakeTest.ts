@@ -5,6 +5,7 @@ type QAEntry = {
     question: string;
     topic: string;
     answer: number;
+    [key:string] : any;
 }
 
 //TODO: figure this shit out
