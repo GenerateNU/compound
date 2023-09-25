@@ -1,6 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import persistentUserInstance from "../../../../lib/persistentUserInstance";
+import { UserData } from "../../../../lib/CompoundTypes";
 
 export const authOptions: NextAuthOptions = {
   secret: process.env.JWT_SECRET,
@@ -12,13 +13,25 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user }) {
-      if(user.email) {
-        await persistentUserInstance.signUpProviderDetails(user.email);
+      
+      if (user.email) {
+        if(await persistentUserInstance.isUserInDatabase(user.email)) {
+          const dummyUserData: UserData = {
+            email: user.email,
+            phoneNumber: "null",
+            firstName: user.name as string,
+            lastName: user.name as string,
+            dob: new Date(),
+          };
+          await persistentUserInstance.signUpProviderDetails(dummyUserData);
+        }
+        else {
+          return true
+        }
       }
-      return true
+      return true;
     },
-  }
-
+  },
 };
 
 export default NextAuth(authOptions);

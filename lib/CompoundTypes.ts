@@ -15,3 +15,7 @@ export type UserReturnType = {
     lastName?: string;
     isAdmin?: string;
   };
+
+export type Message = {
+    message: string;
+  };

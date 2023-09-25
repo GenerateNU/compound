@@ -2,17 +2,11 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import persistentUserInstance from "../../../../lib/persistentUserInstance";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
-import { UserReturnType } from "../../../../lib/CompoundTypes";
-import { Session } from "inspector";
-
-type Message = {
-  message: string;
-};
+import { UserReturnType, Message } from "../../../../lib/CompoundTypes";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Message>,
-  ses: Session
+  res: NextApiResponse<Message>
 ) {
   const session = await getServerSession(req, res, authOptions);
 

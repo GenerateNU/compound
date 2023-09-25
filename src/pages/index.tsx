@@ -14,8 +14,11 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1>Home!</h1>
       <div onClick={signIn} href={"/auth-frontend/signUp"}>
-            {button("Sign up now")}
-          </div>
+            {button("Sign Up")}
+      </div>
+      <div onClick={signIn} href={"/auth-frontend/signIn"}>
+            {button("Sign In")}
+      </div>
     </main>
   );
 }

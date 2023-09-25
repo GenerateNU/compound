@@ -27,16 +27,8 @@ export default class Users {
     }
   }
 
-  public async signUpProviderDetails(emailFromProvider: string ) {
-    const userData: UserData = {
-      email: '',
-      phoneNumber: '',
-      firstName: '',
-      lastName: '',
-      dob: new Date(),
-    }
-    
-    // await this.usersDB.create({userData});
+  public async signUpProviderDetails(userData: UserData ) {
+    await this.usersDB.create({data: userData});
   }
 
   private setDefaultAttributes(data: UserData): UserData {
@@ -81,7 +73,15 @@ export default class Users {
     }
 
     return userDetails;
-    
+  }
 
+  public async isUserInDatabase(email: string): Promise<boolean> {
+    const userExists = this.usersDB.findUnique({
+      where: {
+        email: email
+      }
+    })
+
+    return userExists instanceof Users
   }
 }
