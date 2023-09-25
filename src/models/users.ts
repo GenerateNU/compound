@@ -1,4 +1,4 @@
-import { PrismaClient,User } from "@prisma/client";
+import { PrismaClient, User } from "@prisma/client";
 
 import isEmail from "isemail";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
@@ -15,70 +15,50 @@ interface UserData {
 
 // Uer Information that is Insensitive
 export interface InsensitiveUserInformation {
-  email?: string | null,
-  phoneNumber?: string | null,
-  firstName?: string | null,
-  lastName?: string | null,
+  email?: string | null;
+  phoneNumber?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
 }
 const UNIQUE_CONSTRAINT_ERROR_CODE = "P2002";
 
 export default class Users {
   constructor(private readonly usersDB: PrismaClient["user"]) {}
 
-
-
-  //updates the user of the given id with the given data given of type object and returns the userinformation 
+  //updates the user of the given id with the given data given of type object and returns the userinformation
   // which is shown nowhere or returns an err
   public async updateUserById(id: number, updatedData: object) {
     try {
       const UserInformation: User | null = await this.usersDB.update({
-        where: {id: 
-          id},
+        where: { id: id },
         data: updatedData,
-      })
-      return UserInformation
+      });
+      return UserInformation;
+    } catch (err) {
+      throw "Error: there is not proper data that was given";
     }
-    catch (err) {
-      throw "Error: there is not proper data that was given"
-    }
-  }
-
-  //gets the user id number to find if there is a singular user with the id number and returns the info it has
-  public async getUserById(id: number) {
-    try {
-      const UserInformation: User | null = await this.usersDB.findUnique({
-        where: {
-          id : id
-      },
-      })
-      return UserInformation
-     }
-     catch (err) {
-      throw "User is not an integer"
-     }
   }
 
   // Get Insensitive User Information By ID
   public async getUserById(id: number) {
-
     try {
       // Select Insensitive User Information from Database based on ID
-      const UserInformation: InsensitiveUserInformation | null = await this.usersDB.findUnique({
-        where: {
-          id
-        },
-        select: {
-          id: true,
-          email: true,
-          phoneNumber: true,
-          firstName: true,
-          lastName: true,
-        }
-      });
-      
+      const UserInformation: InsensitiveUserInformation | null =
+        await this.usersDB.findUnique({
+          where: {
+            id,
+          },
+          select: {
+            id: true,
+            email: true,
+            phoneNumber: true,
+            firstName: true,
+            lastName: true,
+          },
+        });
+
       return UserInformation;
-    }
-    catch (Error) {
+    } catch (Error) {
       throw "Error: User ID is not an Number";
     }
   }

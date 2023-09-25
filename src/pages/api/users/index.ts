@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import persistentUserInstance from "../../../../prisma/persistentUserInstance";
+import persistentUserInstance from "../../../../lib/persistentUserInstance";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
 

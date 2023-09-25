@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import persistentIntakeTestInstance from "../../../../prisma/persistentIntakeTestInstance";
+import persistentIntakeTestInstance from "../../../../lib/persistentIntakeTestInstance";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
 
@@ -23,16 +23,15 @@ export default async function handler(
 }
 
 async function registerIntakeExam(
-    req: NextApiRequest,
-    res: NextApiResponse<Message>
+  req: NextApiRequest,
+  res: NextApiResponse<Message>
 ) {
-    try {
-        await persistentIntakeTestInstance.takeTest({
-            ...req.body,
-        });
-    }
-    catch (error) {
-        return res.status(403).send({message: String(error)});
-    }
-    return res.status(200).send({message: "intake test recorded"});
+  try {
+    await persistentIntakeTestInstance.takeTest({
+      ...req.body,
+    });
+  } catch (error) {
+    return res.status(403).send({ message: String(error) });
+  }
+  return res.status(200).send({ message: "intake test recorded" });
 }
