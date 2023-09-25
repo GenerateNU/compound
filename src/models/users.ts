@@ -1,4 +1,5 @@
 import { PrismaClient,User } from "@prisma/client";
+
 import isEmail from "isemail";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
@@ -12,10 +13,18 @@ interface UserData {
   [key: string]: any;
 }
 
+// Uer Information that is Insensitive
+export interface InsensitiveUserInformation {
+  email?: string | null,
+  phoneNumber?: string | null,
+  firstName?: string | null,
+  lastName?: string | null,
+}
 const UNIQUE_CONSTRAINT_ERROR_CODE = "P2002";
 
 export default class Users {
   constructor(private readonly usersDB: PrismaClient["user"]) {}
+
 
 
   //updates the user of the given id with the given data given of type object and returns the userinformation 
@@ -47,6 +56,31 @@ export default class Users {
      catch (err) {
       throw "User is not an integer"
      }
+  }
+
+  // Get Insensitive User Information By ID
+  public async getUserById(id: number) {
+
+    try {
+      // Select Insensitive User Information from Database based on ID
+      const UserInformation: InsensitiveUserInformation | null = await this.usersDB.findUnique({
+        where: {
+          id
+        },
+        select: {
+          id: true,
+          email: true,
+          phoneNumber: true,
+          firstName: true,
+          lastName: true,
+        }
+      });
+      
+      return UserInformation;
+    }
+    catch (Error) {
+      throw "Error: User ID is not an Number";
+    }
   }
 
   public async signUp(data: UserData) {

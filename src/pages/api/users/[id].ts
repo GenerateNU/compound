@@ -1,5 +1,4 @@
 // GET, PUT, DELETE operations for a specific user by ID
-
 import type { NextApiRequest, NextApiResponse } from "next";
 import persistentUserInstance from "../../../../prisma/persistentUserInstance";
 import { getServerSession } from "next-auth";
@@ -9,9 +8,13 @@ import { error } from "console";
 import { PrismaClient, User } from '@prisma/client';
 const prisma = new PrismaClient();
 
+import { InsensitiveUserInformation } from "@/models/users";
+
+
 type Message = {
-  message: string;
-};
+    message?: string;
+  };
+  
 
 export default async function handler(
   req: NextApiRequest,
@@ -28,6 +31,7 @@ export default async function handler(
     PATCH: updateUserPatch,
   };
   console.log(req.body)
+
   if (req.method) {
     return supportedRequestMethods[req.method](req, res, session);
   }
@@ -140,5 +144,20 @@ async function updateUserPatch(
         throw res.status(200).send({ message: "updated user thank you" })
     } catch(error) {
         throw res.status(403).send({ message: "user was not properly updated in patch" });
+
+async function getUser(
+  req: NextApiRequest,
+  res: NextApiResponse<Message | InsensitiveUserInformation>
+) {
+    let id = Number(req.query.id);
+
+    try {
+        const userInfo = await persistentUserInstance.getUserById(id);
+        if (!userInfo || Object.keys(userInfo).length === 0) {
+          return res.status(404).send({message: "User not found"})
+        }
+        return res.status(200).send(userInfo);
+    } catch (error) {
+        return res.status(403).send({ message: String(error) });
     }
 }
