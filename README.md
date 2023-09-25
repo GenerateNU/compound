@@ -1,4 +1,4 @@
-to run application
+To run application
 1. clone repository onto your machine with `git clone https://github.com/GenerateNU/compound.git`
 2. run `npm install` at <some path>/compound to install dependencies
 3. create and run docker postgis container on port 3001 with POSTGRES_PASSWORD=password (make sure to shut down any existing containers)
