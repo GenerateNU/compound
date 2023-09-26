@@ -1,5 +1,5 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
-import prisma from "../prisma/client";
+import prisma from "../lib/client";
 // import { authOptions } from "@auth/[...nextauth]";
 import { getServerSession, Session } from "next-auth";
 import { User } from "@prisma/client";

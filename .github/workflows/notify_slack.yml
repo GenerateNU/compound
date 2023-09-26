@@ -1,0 +1,21 @@
+name: Notify Slack on PR
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Send notification to Slack
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} 
+      uses: 8398a7/action-slack@v3
+      with:
+        status: custom
+        fields: workflow,job,commit,repo,ref,author,took 
+        custom_payload: |
+          {
+            text: "A pull request event occurred:\n Event: ${{ github.event_name }}\n Repo: ${{ github.repository }}\n Author: ${{ github.actor }}\n Link: ${{ github.event.pull_request.html_url }}"
+          }
