@@ -2,16 +2,8 @@ import { PrismaClient, User } from "@prisma/client";
 
 import isEmail from "isemail";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
-
-interface UserData {
-  email: string;
-  phoneNumber: string;
-  firstName: string;
-  lastName: string;
-  dob: Date;
-  password: string;
-  [key: string]: any;
-}
+import { UserData, UserReturnType } from "../../lib/CompoundTypes";
+import { data } from "autoprefixer";
 
 // Uer Information that is Insensitive
 export interface InsensitiveUserInformation {
@@ -81,6 +73,10 @@ export default class Users {
     }
   }
 
+  public async signUpProviderDetails(userData: UserData ) {
+    await this.usersDB.create({data: userData});
+  }
+
   private setDefaultAttributes(data: UserData): UserData {
     return {
       ...data,
@@ -104,5 +100,34 @@ export default class Users {
   private validateInputData(data: UserData) {
     this.validateEmail(data.email);
     // this.validatePhoneNumber(data.phone_number); // TODO: uncomment this
+  }
+
+  public async getUser(email: string) {
+    const user  = await this.usersDB.findUnique({
+        where:{email: email}
+    })
+    
+    if(user === null){
+      throw new Error("user not found")
+    }
+
+    const userDetails: UserReturnType = {
+      email: user.email as string,
+      id: user.id as number,
+      firstName: user.firstName,
+      lastName: user.lastName,
+    }
+
+    return userDetails;
+  }
+
+  public async isUserInDatabase(email: string): Promise<boolean> {
+    const userExists = this.usersDB.findUnique({
+      where: {
+        email: email
+      }
+    })
+
+    return userExists instanceof Users
   }
 }

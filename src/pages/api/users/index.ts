@@ -2,10 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import persistentUserInstance from "../../../../lib/persistentUserInstance";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
-
-type Message = {
-  message: string;
-};
+import { UserReturnType, Message } from "../../../../lib/CompoundTypes";
 
 export default async function handler(
   req: NextApiRequest,
@@ -15,6 +12,7 @@ export default async function handler(
 
   const supportedRequestMethods: { [key: string]: Function } = {
     POST: registerUser,
+    GET: getUser,
   };
   if (req.method) {
     return supportedRequestMethods[req.method](req, res, session);
@@ -34,4 +32,17 @@ async function registerUser(
     return res.status(403).send({ message: String(error) });
   }
   return res.status(200).send({ message: "user added" });
+}
+
+async function getUser(
+  req: NextApiRequest,
+  res: NextApiResponse<UserReturnType | Message>
+) {
+  try {
+    const body = req.body;
+    const userDetails = await persistentUserInstance.getUser(body);
+    return res.status(200).send(userDetails);
+  } catch (error) {
+    return res.status(403).send({ message: String(error) });
+  }
 }
