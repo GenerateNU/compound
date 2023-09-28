@@ -19,3 +19,10 @@ export type UserReturnType = {
 export type Message = {
     message: string;
   };
+
+export type Quizzes = {
+    id : number;
+    questions : string;
+    passed : boolean;
+    score : number;
+}
