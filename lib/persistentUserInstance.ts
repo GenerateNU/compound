@@ -1,6 +1,5 @@
 import Users from "@/models/users";
-import prisma from "../prisma/client";
-
+import prisma from "./client";
 
 const persistentUserInstance = new Users(prisma.user);
 
