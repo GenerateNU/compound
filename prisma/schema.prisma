@@ -42,30 +42,9 @@ model User {
   subModuleQuizScores Json
   moduleExamScores  Json
   progress          Progress[]
-  // consultations     Consultation[] // Reach
   intakeTests       IntakeTest[] // Probably get rid of this
   preferences      String[]
-  // userBadges        UserBadge[]
 }
-
-
-// model Badge {
-//   id         Int         @id @default(autoincrement())
-//   name       String
-//   criteria   String      // A description of what's required to earn the badge
-//   imageUrl   String      // A URL to the badge image/icon
-// }
-
-// model UserBadge {
-//   userId   Int
-//   user     User @relation(fields: [userId], references: [id])
-//   badgeId  Int
-//   badge    Badge @relation(fields: [badgeId], references: [id])
-//   awardedAt DateTime @default(now())
-
-//   @@id([userId, badgeId])
-// }
-
 
 model IntakeTest {
   id         Int      @id @default(autoincrement())
@@ -76,39 +55,11 @@ model IntakeTest {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }
-
-
-
-
-model ModuleExam {
-  id          Int      @id @default(autoincrement())
-  moduleId    Int
-  module      Module?  @relation(fields: [moduleId], references: [id]) 
-  questions   String[] // Could be an array or another model for more structure
-  passed      Boolean
-  score       Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-}
-
-
-model SubModuleQuiz {
-  id             Int       @id @default(autoincrement())
-  subModuleId    Int
-  subModule      SubModule @relation(fields: [subModuleId], references: [id])
-  questions      String[] // Similar as above
-  passed         Boolean
-  score          Int
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-}
-
-
 model Module {
   id          Int         @id @default(autoincrement())
   title       String
   subModules  SubModule[]
-  moduleQuiz  ModuleExam
+  moduleExam  ModuleExam? @relation
 }
 
 model SubModule {
@@ -117,7 +68,7 @@ model SubModule {
   moduleId  Int
   module    Module   @relation(fields: [moduleId], references: [id])
   lessons   Lesson[]
-  subModuleQuiz SubModuleQuiz
+  subModuleQuiz SubModuleQuiz? @relation
 }
 
 model Lesson {
@@ -127,7 +78,27 @@ model Lesson {
   order      Int
   subModuleId Int
   subModule   SubModule  @relation(fields: [subModuleId], references: [id])
-  // progress    Progress[]
+}
+
+model ModuleExam {
+  id          Int      @id @default(autoincrement())
+  moduleId    Int      @unique 
+  module      Module   @relation(fields: [moduleId], references: [id])
+  questions   String[]
+  passed      Boolean
+  score       Int
+}
+
+
+model SubModuleQuiz {
+  id             Int       @id @default(autoincrement())
+  subModuleId    Int        @unique
+  subModule      SubModule @relation(fields: [subModuleId], references: [id])
+  questions      String[] // Similar as above
+  passed         Boolean
+  score          Int
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 }
 
 model Progress {
@@ -135,27 +106,6 @@ model Progress {
   subModuleId Int
   id       Int    @id @default(autoincrement())
   lessonId Int
-  // lesson   Lesson @relation(fields: [lessonId], references: [id])
   userId   Int
   user     User   @relation(fields: [userId], references: [id])
-  // date     DateTime @default(now())
 }
-
-// model Advisor {
-//   id          Int           @id @default(autoincrement())
-//   name        String
-//   email       String        @unique
-//   specialization String
-//   rate        Float
-//   location    String
-//   consultations Consultation[]
-// }
-
-// model Consultation {
-//   id        Int      @id @default(autoincrement())
-//   userId    Int
-//   user      User     @relation(fields: [userId], references: [id])
-//   advisorId Int
-//   advisor   Advisor  @relation(fields: [advisorId], references: [id])
-//   date      DateTime @default(now())
-// }
