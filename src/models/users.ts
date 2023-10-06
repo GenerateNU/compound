@@ -43,7 +43,6 @@ export default class Users {
       }
 
       user.moduleExamScores[moduleId] = {"moduleExamId": moduleExamId, "results":results, "score": score}
-      console.log(user.moduleExamScores)
       await this.usersDB.update({
         where: { id: userId },
         data: {
