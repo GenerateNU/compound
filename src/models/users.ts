@@ -31,6 +31,32 @@ export default class Users {
     }
   }
 
+  public async updateUserModuleExam(userId: number, moduleId: number, moduleExamId: number, results: boolean[], score: number) {
+    let user: User;
+
+    try {
+      const user = await this.usersDB.findUnique({
+        where: { id: userId },
+      });
+      if (!user) {
+        throw "User Not Found"
+      }
+
+      user.moduleExamScores[moduleId] = {"moduleExamId": moduleExamId, "results":results, "score": score}
+      console.log(user.moduleExamScores)
+      await this.usersDB.update({
+        where: { id: userId },
+        data: {
+          moduleExamScores: user?.moduleExamScores,
+        },
+      });
+
+    } catch (Error) {
+      throw "User Not Found"
+    }
+    
+  
+  }
   // Get Insensitive User Information By ID
   public async getUserById(id: number) {
     try {

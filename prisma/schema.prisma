@@ -85,8 +85,7 @@ model ModuleExam {
   moduleId    Int      @unique 
   module      Module   @relation(fields: [moduleId], references: [id])
   questions   String[]
-  passed      Boolean
-  score       Int
+  answers     String[]
 }
 
 
@@ -95,8 +94,6 @@ model SubModuleQuiz {
   subModuleId    Int        @unique
   subModule      SubModule @relation(fields: [subModuleId], references: [id])
   questions      String[] // Similar as above
-  passed         Boolean
-  score          Int
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
 }
