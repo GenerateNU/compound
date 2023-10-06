@@ -6,8 +6,7 @@ import { authOptions } from "../auth/[...nextauth]";
 import Users from "@/models/users";
 import { error } from "console";
 import { PrismaClient, User } from "@prisma/client";
-const prisma = new PrismaClient();
-
+import prisma from "../../../../lib/client";
 import { InsensitiveUserInformation } from "@/models/users";
 
 type Message = {

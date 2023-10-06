@@ -7,8 +7,7 @@ import { Message } from "../../../../../lib/CompoundTypes";
 import { AnswersType } from "../../../../../lib/CompoundTypes";
 import persistentUserInstance from "../../../../../lib/persistentUserInstance";
 import { ExamSubmissionResponse } from "../../../../../lib/CompoundTypes";
-const prisma = new PrismaClient();
-
+import prisma from "../../../../../lib/client";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Message>
