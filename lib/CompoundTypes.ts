@@ -16,6 +16,13 @@ export type UserReturnType = {
     isAdmin?: string;
   };
 
+export type QuizAnswersType = string[] | null;
+
+export type QuizSubmission = {
+  subModuleQuizId: number;
+  score: number;
+}
+
 export type Message = {
     message: string;
   };
