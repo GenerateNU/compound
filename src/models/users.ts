@@ -45,7 +45,7 @@ export default class Users {
         throw "User Not Found"
       }
 
-      user.subModuleQuizScores[id] = {"id": subModuleQuizId, "results":results, "score": score}
+      user.subModuleQuizScores[id] = {"subModuleQuizId": subModuleQuizId, "results":results, "score": score}
       console.log(user.subModuleQuizScores)
       await this.usersDB.update({
         where: { id: userId },
@@ -57,6 +57,7 @@ export default class Users {
     } catch (Error) {
       throw "User Not Found"
     }
+  }
 
 
   // Get Insensitive User Information By ID
