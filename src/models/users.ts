@@ -31,6 +31,35 @@ export default class Users {
     }
   }
 
+
+  public async updateUserSubModuleQuiz(userId: number, id: number, subModuleQuizId: number, results: boolean[], score: number) {
+    let user: User;
+
+    try {
+      const user = await this.usersDB.findUnique({
+        where: { 
+          id: userId 
+        },
+      });
+      if (!user) {
+        throw "User Not Found"
+      }
+
+      user.subModuleQuizScores[id] = {"subModuleQuizId": subModuleQuizId, "results":results, "score": score}
+      console.log(user.subModuleQuizScores)
+      await this.usersDB.update({
+        where: { id: userId },
+        data: {
+          subModuleQuizScores: user?.subModuleQuizScores,
+        },
+      });
+
+    } catch (Error) {
+      throw "User Not Found"
+    }
+  }
+
+
   // Get Insensitive User Information By ID
   public async getUserById(id: number) {
     try {
@@ -130,4 +159,8 @@ export default class Users {
 
     return userExists instanceof Users
   }
+
+
+
+
 }
