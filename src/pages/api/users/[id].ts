@@ -3,8 +3,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import persistentUserInstance from "../../../../lib/persistentUserInstance";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
-import Users from "@/models/users";
-import { error } from "console";
 import { PrismaClient, User } from "@prisma/client";
 const prisma = new PrismaClient();
 
@@ -19,17 +17,15 @@ export default async function handler(
   res: NextApiResponse<Message>
 ) {
   const session = await getServerSession(req, res, authOptions);
-  console.log("hello");
   const supportedRequestMethods: { [key: string]: Function } = {
     GET: getUser,
+    DELETE: deleteUser,
     // these two below are currently seperated with differnet functions in case there is any
     // edits needed to be made to a patch or put to ensure
     // a more secure and validated request other than the built in prisma checks
     PUT: updateUser,
     PATCH: updateUserPatch,
   };
-  console.log(req.body);
-
   if (req.method) {
     return supportedRequestMethods[req.method](req, res, session);
   }
@@ -45,7 +41,7 @@ async function updateUser(req: NextApiRequest, res: NextApiResponse) {
   try {
     id = Number(req.query.id);
     if (typeof id !== "number") {
-      throw Error("plesae input number");
+      throw Error("please input number");
     }
   } catch (error) {
     return res.status(403).send({ message: String(error) });
@@ -57,19 +53,7 @@ async function updateUser(req: NextApiRequest, res: NextApiResponse) {
     "dob",
     "phoneNumber",
     "email",
-    "emailVerified",
-    "gender",
-    "age",
-    "ethnicity",
-    "education",
-    "maritalStatus",
-    "password",
-    "verified",
-    "isAdmin",
-    "languages",
-    "employmentStatus",
     "householdIncome",
-    "livingStatus",
   ];
   const missProp = [];
 
@@ -79,6 +63,7 @@ async function updateUser(req: NextApiRequest, res: NextApiResponse) {
       missProp.push(prop);
     }
   }
+
   if (missProp.length > 0) {
     return res
       .status(400)
@@ -139,7 +124,7 @@ async function getUser(
   req: NextApiRequest,
   res: NextApiResponse<Message | InsensitiveUserInformation>
 ) {
-  let id = Number(req.query.id);
+  const id = Number(req.query.id);
 
   try {
     const userInfo = await persistentUserInstance.getUserById(id);
@@ -150,4 +135,13 @@ async function getUser(
   } catch (error) {
     return res.status(403).send({ message: String(error) });
   }
+}
+
+async function deleteUser(
+  req: NextApiRequest,
+  res: NextApiResponse<Message | InsensitiveUserInformation>,
+  session: any
+) {
+  const id  = Number(req.query.id)
+  await persistentUserInstance.deleteUser(id)
 }

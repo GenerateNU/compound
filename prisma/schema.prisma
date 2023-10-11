@@ -19,14 +19,14 @@ datasource db {
 }
 
 model User {
-  id               Int              @id @default(autoincrement())
-  firstName        String
-  lastName         String
-  dob              DateTime
-  email            String?          @unique
-  phoneNumber      String?          @unique
-  registered        Boolean          @default(false)
-  isAdmin     Boolean @default(false) // CLIENT ACCESS ONLY
+  id                  Int              @id @default(autoincrement())
+  firstName           String
+  lastName            String
+  dob                 DateTime
+  email               String?          @unique
+  phoneNumber         String?          @unique
+  registered          Boolean          @default(false)
+  isAdmin             Boolean          @default(false) // CLIENT ACCESS ONLY
   // gender           String
   // age              Int
   // ethnicity        String
@@ -34,16 +34,16 @@ model User {
   // maritalStatus    String
   // languages        String[]
   // employmentStatus String?          
-  householdIncome  Float?          
+  householdIncome     Float?          
   // livingStatus     String?          
-  // accounts          Account[]
-  // sessions          Session[]
-  lessonsCompleted Int[]
+  // accounts         Account[]
+  // sessions         Session[]
+  lessonsCompleted    Int[]
   subModuleQuizScores Json
-  moduleExamScores  Json
-  progress          Progress[]
-  intakeTests       IntakeTest[] // Probably get rid of this
-  preferences      String[]
+  moduleExamScores    Json
+  progress            Progress[]
+  intakeTests         IntakeTest[] // Probably get rid of this
+  preferences         String[]
 }
 
 model IntakeTest {
