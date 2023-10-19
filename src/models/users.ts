@@ -19,7 +19,7 @@ export default class Users {
 
   //updates the user of the given id with the given data given of type object and returns the userinformation
   // which is shown nowhere or returns an err
-  public async updateUserById(id: number, updatedData: object) {
+  public async updateUserById(id: number, updatedData: UserData) {
     try {
       const UserInformation: User | null = await this.usersDB.update({
         where: { id: id },
@@ -73,16 +73,28 @@ export default class Users {
     }
   }
 
-  public async signUpProviderDetails(userData: UserData ) {
-    await this.usersDB.create({data: userData});
+  public async signUpProviderDetails(userData: UserData) {
+    const defaultData = this.setDefaultAttributes(userData);
+    await this.usersDB.create({ data: defaultData });
   }
 
   private setDefaultAttributes(data: UserData): UserData {
     return {
       ...data,
       //   verified: true, // TODO: change this and add admin page
-      createdAt: new Date(),
+      registered: false,
+      isAdmin: false,
+      subModuleQuizScores: [],
+      moduleExamScores: [],
     };
+  }
+
+  public async deleteUser(id: number) {
+    await this.usersDB.delete({
+      where: {
+        id: id,
+      },
+    });
   }
 
   private validateEmail(email: string) {
@@ -103,12 +115,12 @@ export default class Users {
   }
 
   public async getUser(email: string) {
-    const user  = await this.usersDB.findUnique({
-        where:{email: email}
-    })
-    
-    if(user === null){
-      throw new Error("user not found")
+    const user = await this.usersDB.findUnique({
+      where: { email: email },
+    });
+
+    if (user === null) {
+      throw new Error("user not found");
     }
 
     const userDetails: UserReturnType = {
@@ -116,7 +128,7 @@ export default class Users {
       id: user.id as number,
       firstName: user.firstName,
       lastName: user.lastName,
-    }
+    };
 
     return userDetails;
   }
@@ -124,10 +136,9 @@ export default class Users {
   public async isUserInDatabase(email: string): Promise<boolean> {
     const userExists = this.usersDB.findUnique({
       where: {
-        email: email
-      }
-    })
-
-    return userExists instanceof Users
+        email: email,
+      },
+    });
+    return userExists instanceof Users;
   }
 }

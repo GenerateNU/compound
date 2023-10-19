@@ -13,14 +13,14 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user }) {
-      
       if (user.email) {
-        if(await persistentUserInstance.isUserInDatabase(user.email)) {
+        const isUserinDB = await persistentUserInstance.isUserInDatabase(user.email)
+        if(isUserinDB === false) {
           const dummyUserData: UserData = {
             email: user.email,
             phoneNumber: "null",
-            firstName: user.name as string,
-            lastName: user.name as string,
+            firstName: user.name?.split(" ")[0] as string,
+            lastName: user.name?.split(" ")[1] as string,
             dob: new Date(),
           };
           await persistentUserInstance.signUpProviderDetails(dummyUserData);
