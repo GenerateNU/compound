@@ -26,3 +26,10 @@ export type Quizzes = {
     passed : boolean;
     score : number;
 }
+
+export type AnswersType = string[] | null;
+
+export type ExamSubmissionResponse = {
+  moduleID: number;
+  score: number;
+}

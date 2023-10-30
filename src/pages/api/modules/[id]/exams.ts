@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../auth/[...nextauth]";
 import { PrismaClient, ModuleExam } from "@prisma/client";
-const prisma = new PrismaClient();
+import prisma from "../../../../../lib/client";
 import { Message } from "../../../../../lib/CompoundTypes";
 
 
