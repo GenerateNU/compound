@@ -1,3 +1,4 @@
+import SignUpBar from "@/components/SignUpBar";
 import { signIn } from "next-auth/react";
 
 export default function Home() {
@@ -11,7 +12,7 @@ export default function Home() {
 
   
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="bg-black flex min-h-screen flex-col items-center justify-between p-12">
       <h1>Home!</h1>
       <div onClick={signIn} href={"/auth-frontend/signUp"}>
             {button("Sign Up")}
