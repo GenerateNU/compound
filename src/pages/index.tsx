@@ -1,5 +1,7 @@
 import SignUpBar from "@/components/SignUpBar";
 import { signIn } from "next-auth/react";
+import SignInPage from "./auth-frontend/signIn";
+import { Button } from "@chakra-ui/react";
 
 export default function Home() {
   function button(text: string) {
@@ -9,16 +11,16 @@ export default function Home() {
       </button>
     );
   }
-
   
   return (
     <main className="bg-black flex min-h-screen flex-col items-center justify-between p-12">
+      <SignInPage></SignInPage>
       <h1>Home!</h1>
-      <div onClick={signIn} href={"/auth-frontend/signUp"}>
-            {button("Sign Up")}
+      <div onClick={() => signIn("google")} >
+        {button("Sign In")}
       </div>
-      <div onClick={signIn} href={"/auth-frontend/signIn"}>
-            {button("Sign In")}
+      <div onClick={() => signIn("google")} >
+        { button("Sign Up") }
       </div>
     </main>
   );
