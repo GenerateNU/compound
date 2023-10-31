@@ -14,7 +14,6 @@ export default function Home() {
   
   return (
     <main className="bg-black flex min-h-screen flex-col items-center justify-between p-12">
-      <SignInPage></SignInPage>
       <h1>Home!</h1>
       <div onClick={() => signIn("google")} >
         {button("Sign In")}
