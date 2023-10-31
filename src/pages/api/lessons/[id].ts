@@ -42,7 +42,7 @@ async function getLesson(
 		}
 	});
 	if (!lesson){
-		return res.status(403).send({ message: `Lesson with Id ${id} does not exist` })
+		return res.status(404).send({ message: `Lesson with Id ${id} not found` })
 	}else{
 		return res.status(200).send(lesson);
 	}
