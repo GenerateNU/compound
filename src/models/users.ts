@@ -3,7 +3,7 @@ import { PrismaClient, User } from "@prisma/client";
 import isEmail from "isemail";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { UserData, UserReturnType } from "../../lib/CompoundTypes";
-import { data } from "autoprefixer";
+import prisma from "../../lib/client";
 
 // Uer Information that is Insensitive
 export interface InsensitiveUserInformation {
@@ -159,11 +159,11 @@ export default class Users {
   }
 
   public async isUserInDatabase(email: string): Promise<boolean> {
-    const userExists = this.usersDB.findUnique({
+    const userExists = await this.usersDB.findUnique({
       where: {
         email: email,
       },
     });
-    return userExists instanceof Users;
+    return userExists !== null;
   }
 }
