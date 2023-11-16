@@ -1,4 +1,7 @@
 import * as React from "react";
+import { useKeenSlider } from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
+import Wheel from "./MessageCarousel";
 
 export function LearningComponent(props: any) {
   return (
@@ -245,7 +248,8 @@ function FinancialLiteracyComponent(props: any) {
         </h2>
         <div className="flex w-full max-w-[1399px] flex-col items-stretch mt-36 max-md:max-w-full max-md:mt-10">
           <div className="pr-0.5 max-md:max-w-full">
-            <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
+            <Wheel />
+            {/*<div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
               <div className="flex flex-col items-stretch w-3/5 max-md:w-full max-md:ml-0">
                 <div className="shadow-sm bg-white flex grow flex-col w-full mx-auto pl-11 pr-14 pt-10 pb-24 max-md:max-w-full max-md:mt-10 max-md:px-5">
                   <div className="flex w-[203px] max-w-full items-stretch justify-between gap-5">
@@ -280,7 +284,7 @@ function FinancialLiteracyComponent(props: any) {
                   </div>
                 </div>
               </div>
-            </div>
+            </div>*/}
           </div>
         </div>
       </section>
