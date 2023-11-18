@@ -3,7 +3,7 @@ import { PrismaClient, User } from "@prisma/client";
 import isEmail from "isemail";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { UserData, UserReturnType } from "../../lib/CompoundTypes";
-import { data } from "autoprefixer";
+import prisma from "../../lib/client";
 
 // Uer Information that is Insensitive
 export interface InsensitiveUserInformation {
@@ -31,6 +31,31 @@ export default class Users {
     }
   }
 
+  public async updateUserModuleExam(userId: number, moduleId: number, moduleExamId: number, results: boolean[], score: number) {
+    let user: User;
+
+    try {
+      const user = await this.usersDB.findUnique({
+        where: { id: userId },
+      });
+      if (!user) {
+        throw "User Not Found"
+      }
+
+      user.moduleExamScores[moduleId] = {"moduleExamId": moduleExamId, "results":results, "score": score}
+      await this.usersDB.update({
+        where: { id: userId },
+        data: {
+          moduleExamScores: user?.moduleExamScores,
+        },
+      });
+
+    } catch (Error) {
+      throw "User Not Found"
+    }
+    
+  
+  }
   // Get Insensitive User Information By ID
   public async getUserById(id: number) {
     try {
@@ -134,11 +159,11 @@ export default class Users {
   }
 
   public async isUserInDatabase(email: string): Promise<boolean> {
-    const userExists = this.usersDB.findUnique({
+    const userExists = await this.usersDB.findUnique({
       where: {
         email: email,
       },
     });
-    return userExists instanceof Users;
+    return userExists !== null;
   }
 }

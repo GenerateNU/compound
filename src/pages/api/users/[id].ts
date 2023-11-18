@@ -4,8 +4,7 @@ import persistentUserInstance from "../../../../lib/persistentUserInstance";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
 import { PrismaClient, User } from "@prisma/client";
-const prisma = new PrismaClient();
-
+import prisma from "../../../../lib/client";
 import { InsensitiveUserInformation } from "@/models/users";
 
 type Message = {

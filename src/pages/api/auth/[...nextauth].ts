@@ -15,18 +15,20 @@ export const authOptions: NextAuthOptions = {
     async signIn({ user }) {
       if (user.email) {
         const isUserinDB = await persistentUserInstance.isUserInDatabase(user.email)
+        console.log(isUserinDB)
         if(isUserinDB === false) {
           const dummyUserData: UserData = {
             email: user.email,
-            phoneNumber: "null",
+            phoneNumber: null,
             firstName: user.name?.split(" ")[0] as string,
             lastName: user.name?.split(" ")[1] as string,
             dob: new Date(),
           };
           await persistentUserInstance.signUpProviderDetails(dummyUserData);
+          return '/auth-frontend/signUp'
         }
         else {
-          return true
+          return '/dashboard'
         }
       }
       return true;
