@@ -1,4 +1,5 @@
 import SignUpBar from "@/components/SignUpBar";
+import AccountConfirmation from "@/components/AccountConfirmation"
 import { signIn } from "next-auth/react";
 import SignInPage from "./auth-frontend/signIn";
 import { Button } from "@chakra-ui/react";
@@ -13,14 +14,17 @@ export default function Home() {
   }
   
   return (
-    <main className="bg-black flex min-h-screen flex-col items-center justify-between p-12">
-      <h1>Home!</h1>
-      <div onClick={() => signIn("google")} >
-        {button("Sign In")}
-      </div>
-      <div onClick={() => signIn("google")} >
-        { button("Sign Up") }
-      </div>
+    // <main className="bg-black flex min-h-screen flex-col items-center justify-between p-12">
+    //   <h1>Home!</h1>
+    //   <div onClick={() => signIn("google")} >
+    //     {button("Sign In")}
+    //   </div>
+    //   <div onClick={() => signIn("google")} >
+    //     { button("Sign Up") }
+    //   </div>
+    // </main>
+    <main>
+      <AccountConfirmation/>
     </main>
   );
 }
