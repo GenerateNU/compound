@@ -1,4 +1,5 @@
 import { signIn } from "next-auth/react";
+import Dashboard from "@/components/Dashboard";
 
 export default function Home() {
   function button(text: string) {
@@ -9,16 +10,9 @@ export default function Home() {
     );
   }
 
-  
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Home!</h1>
-      <div onClick={signIn} href={"/auth-frontend/signUp"}>
-            {button("Sign Up")}
-      </div>
-      <div onClick={signIn} href={"/auth-frontend/signIn"}>
-            {button("Sign In")}
-      </div>
-    </main>
-  );
+  // function handleSignIn(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+  //   signIn();
+  // }
+
+  return <Dashboard />;
 }
