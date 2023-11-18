@@ -10,7 +10,7 @@ export default function Home() {
       <ProfileComponent />
       <ProgressComponent /> */}
       {/* <SkipSection /> */}
-      <Dashboard />
+      {/* <Dashboard /> */}
       {/* <Dashboard /> */}
     </div>
   );

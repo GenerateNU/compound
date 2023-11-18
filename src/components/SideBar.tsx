@@ -33,7 +33,7 @@ const Sidebar = () => {
       imageSrc:
         "https://cdn.builder.io/api/v1/image/assets/TEMP/323e6bd4-41f9-441a-a6ec-2f261eaa7530?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
       alt: "Dashboard",
-      href: "/signU[p",
+      href: "/postDashboard",
     },
     {
       name: "Curriculum",
@@ -47,7 +47,7 @@ const Sidebar = () => {
       imageSrc:
         "https://cdn.builder.io/api/v1/image/assets/TEMP/15a23448-9344-4525-8775-7abc98b97fa6?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
       alt: "Achievements",
-      href: "/achievements",
+      href: "achievements",
     },
     {
       name: "Profile",

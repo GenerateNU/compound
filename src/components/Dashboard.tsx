@@ -22,7 +22,7 @@ function Dashboard(props: any) {
       <header className="bg-zinc-300 bg-opacity-30 self-stretch flex w-full justify-between gap-5 pl-16 pr-10 py-8 max-md:max-w-full max-md:flex-wrap max-md:px-5">
         <h1 className="text-black text-2xl font-bold mt-5">Compound</h1>
         <a
-          href="auth/signUp"
+          href="account"
           className="justify-center text-black text-center text-xl font-bold max-w-sm leading-7 grow items-center pt-5 pb-3 px-5 rounded-[50px] border-[3px] border-solid border-neutral-400"
         >
           Log in

@@ -131,9 +131,12 @@ function ProfileSetup() {
                 </div>
               </div>
               <div className="justify-center items-center bg-zinc-600 flex flex-col flex-1 px-5 py-3 rounded-lg">
-                <div className="text-white text-center text-base font-semibold leading-[100%] self-center">
+                <a
+                  className="text-white text-center text-base font-semibold leading-[100%] self-center"
+                  href="customizeDashboard"
+                >
                   Save and Continue
-                </div>
+                </a>
               </div>
             </div>
           </div>
