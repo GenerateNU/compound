@@ -1,5 +1,7 @@
 import SignUpBar from "@/components/SignUpBar";
 import { signIn } from "next-auth/react";
+import Dashboard from "@/components/Dashboard";
+
 import SignInPage from "./auth-frontend/signIn";
 import { Button } from "@chakra-ui/react";
 
@@ -11,7 +13,6 @@ export default function Home() {
       </button>
     );
   }
-  
   return (
     <main className="bg-black flex min-h-screen flex-col items-center justify-between p-12">
       <h1>Home!</h1>
@@ -23,4 +24,5 @@ export default function Home() {
       </div>
     </main>
   );
+
 }

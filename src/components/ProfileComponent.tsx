@@ -78,7 +78,7 @@ function ProfileComponent() {
                 </div>
                 <div className="justify-center items-center bg-zinc-600 self-stretch flex w-[339px] max-w-full flex-col grow shrink-0 basis-auto px-5 py-6 rounded-lg">
                   <div className="text-white text-center text-2xl font-semibold leading-[100%] self-center">
-                    <a href="#" aria-label="Let’s Get Started!">
+                    <a href="profileUnfilled" aria-label="Let’s Get Started!">
                       Let’s Get Started!
                     </a>
                   </div>
