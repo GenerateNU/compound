@@ -1,6 +1,8 @@
+
 export default function Home() {
   return (
     <div>
+      <ProfileCustomization></ProfileCustomization>
       {/* <ProfileSetup />
       <ProfileComponent />
       <ProgressComponent /> */}
