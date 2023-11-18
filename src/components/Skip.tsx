@@ -1,16 +1,18 @@
 import React from "react";
-
 function SkipSection() {
   return (
     <div
-      className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center"
+      className="flex justify-center flex-col mt-60 font-normal font-body"
       style={{ width: "773px", height: "466px" }}
     >
       <div className="shadow-[0px_4px_10px_4px_rgba(0,0,0,0.25)] bg-white flex flex-col px-5 rounded-[30px]">
         <h1 className="text-black text-center text-5xl self-center max-w-[684px] mt-20 max-md:text-4xl max-md:mt-10">
           Skip this section? <br />
         </h1>
-        <p className="justify-center text-black text-xl self-center max-w-[606px] mt-20 max-md:max-w-full max-md:mt-10">
+        <p
+          className="justify-center text-black text-xl self-center max-w-[606px] mt-20 max-md:max-w-full max-md:mt-10
+        font-['Inter']"
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa
           mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien fringilla,
           mattis ligula consectetur, ultrices mauris.
@@ -32,5 +34,4 @@ function SkipSection() {
     </div>
   );
 }
-
 export default SkipSection;
