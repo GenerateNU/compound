@@ -105,8 +105,8 @@ function Dashboard(props: any) {
           </div>
         </div>
       </section>
-      <div className="flex items-center justify-between gap-1 mt-9 max-md:max-w-full max-md:flex-wrap max-md:justify-center max-md:mr-1">
-        <div className="bg-neutral-200 self-stretch flex grow basis-[0%] flex-col items-stretch pl-6 pr-14 py-7 rounded-[33px] max-md:px-5">
+      <div className="flex items-center justify-between gap-10 mt-9 max-md:max-w-full max-md:flex-wrap max-md:justify-center max-md:mr-1">
+        <div className="bg-neutral-200 self-stretch flex grow basis-[0%] flex-col items-stretch pl-6 pr-14 py-7 rounded-[33px] max-md:px-5 ml-10">
           <div className="justify-center text-black text-5xl font-extrabold leading-[68.6px] max-md:text-4xl">
             30%
           </div>
@@ -120,11 +120,6 @@ function Dashboard(props: any) {
             Americans
           </div>
         </div>
-        <img
-          loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/adbd295d-e0ec-4746-9cfb-53d596dbf2bc?apiKey=af7b8d767d8745b3a433de5edc8cf82c&"
-          className="aspect-[1.02] object-contain object-center w-[210px] fill-neutral-200 overflow-hidden shrink-0 max-w-full my-auto"
-        />
         <div className="bg-neutral-200 self-stretch flex grow basis-[0%] flex-col items-stretch mt-1 pl-8 pr-10 pt-7 pb-2.5 rounded-[35px] max-md:px-5">
           <div className="justify-center text-black text-5xl font-extrabold leading-[68.6px] max-md:text-4xl">
             35%
@@ -139,12 +134,7 @@ function Dashboard(props: any) {
             questions correctly, compared to 55% of men
           </div>
         </div>
-        <img
-          loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/94abb052-8fc3-4dbd-a1d1-3a2d39c024d9?apiKey=af7b8d767d8745b3a433de5edc8cf82c&"
-          className="aspect-[0.98] object-contain object-center w-[205px] fill-neutral-200 overflow-hidden shrink-0 max-w-full my-auto"
-        />
-        <div className="bg-neutral-200 self-stretch flex grow basis-[0%] flex-col items-stretch mt-1 pl-7 pr-12 pt-7 pb-9 rounded-[33px] max-md:px-5">
+        <div className="bg-neutral-200 self-stretch flex grow basis-[0%] flex-col items-stretch mt-1 pl-7 pr-12 pt-7 pb-9 rounded-[33px] max-md:px-5 mr-10">
           <div className="justify-center text-black text-5xl font-extrabold leading-[68.6px] max-md:text-4xl">
             17
           </div>
@@ -154,7 +144,7 @@ function Dashboard(props: any) {
             className="aspect-[32.57] object-contain object-center w-[228px] fill-black overflow-hidden mt-3.5"
           />
           <div className="justify-center text-black text-xl font-bold leading-7">
-            17 states in the United States require high school students to take
+            states in the United States require high school students to take
             a course in personal finance
           </div>
         </div>
