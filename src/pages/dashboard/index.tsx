@@ -1,3 +1,9 @@
+import Dashboard from "@/components/Dashboard";
+
 export default function SignInPage(): JSX.Element {
-    return (<>dashboard here</>)
+  return (
+    <div>
+      <Dashboard />
+    </div>
+  );
 }
