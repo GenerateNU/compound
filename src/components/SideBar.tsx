@@ -66,7 +66,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <section className="flex flex-col items-stretch w-[19%] max-md:w-full max-md:ml-0">
+    <section className="min-h-screen flex flex-col items-stretch w-[19%] max-md:w-full max-md:ml-0">
       <header className="bg-zinc-100 flex w-full grow flex-col mx-auto pl-10 pr-16 py-11 max-md:mt-7 max-md:px-5">
         <div className="justify-center items-stretch flex w-[161px] max-w-full gap-3.5 ml-3 max-md:ml-2.5 pb-5">
           <a href="/" className="flex">

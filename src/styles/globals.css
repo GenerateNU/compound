@@ -26,3 +26,18 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+.custom-scrollbar {
+  @apply overflow-auto;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  @apply w-2;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-zinc-300 rounded;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  @apply bg-zinc-400;
+}
