@@ -4,6 +4,11 @@ function FinancialLiteracyForm(props: any) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <section className="bg-white h-screen w-screen">
@@ -67,7 +72,7 @@ function FinancialLiteracyForm(props: any) {
               <div className="items-stretch self-center border-[color:var(--Medium-gray,#B2B9C0)] bg-white flex w-[408px] max-w-full gap-2.5 mt-2 px-4 py-2 border-2 border-solid">
                 <div className="text-zinc-900 text-base leading-6 grow shrink basis-auto">
                   <input
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     id="password"
                     name="password"
                     placeholder="Password"
@@ -81,6 +86,7 @@ function FinancialLiteracyForm(props: any) {
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/78cb4d33-f456-43c6-bd15-c05a56503213?apiKey=af7b8d767d8745b3a433de5edc8cf82c&"
                   className="aspect-square object-contain object-center w-6 overflow-hidden shrink-0 max-w-full"
                   alt="Password Icon"
+                  onClick={togglePasswordVisibility}
                 />
               </div>
               <a
