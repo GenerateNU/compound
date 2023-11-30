@@ -1,12 +1,16 @@
-import React from "react";
+import {useState} from "react";
 
 function FinancialLiteracyForm(props: any) {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+
   return (
     <section className="bg-white h-screen w-screen">
       <header className="flex">
         <div className="grow flex flex-col items-stretch">
           <div className="flex flex-col items-stretch max-md:max-w-full">
-            <div className="bg-neutral-100 flex w-full items-center justify-between py-8 px-10">
+            <div className="bg-neutral-100 flex w-full items-center justify-between py-8 p-10">
               <div className="flex justify-between items-center gap-4">
                 <div className="flex w-14 shrink-0 h-14 flex-col rounded-[50%] bg-neutral-400" />
                 <div className="text-black text-2xl font-extrabold">
@@ -49,6 +53,8 @@ function FinancialLiteracyForm(props: any) {
                     name="email"
                     placeholder="Email"
                     className="w-full"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
               </div>
@@ -66,6 +72,8 @@ function FinancialLiteracyForm(props: any) {
                     name="password"
                     placeholder="Password"
                     className="w-full"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <img
