@@ -1,5 +1,6 @@
 import * as React from "react";
 import learningDiagram from "../assets/learning_diagram.png";
+import founderMessage from "../assets/founder_message.png";
 import Image from "next/image";
 
 export function LearningComponent(props: any) {
@@ -146,7 +147,7 @@ function Dashboard(props: any) {
       <div className="h-20"></div>
       <div className="h-20"></div>
       <LearningComponent />
-      <section className="bg-neutral-100 self-stretch flex w-full flex-col items-center mt-32 pl-20 pt-14 pb-20 max-md:max-w-full max-md:mt-10 max-md:pl-5">
+      <section className="self-stretch flex w-full flex-col items-center mt-32 pl-20 pt-14 pb-20 max-md:max-w-full max-md:mt-10 max-md:pl-5">
         <h2 className="text-black text-5xl font-extrabold leading-[68.6px] whitespace-nowrap ml-14 max-md:max-w-full max-md:text-4xl">
           What our users say
         </h2>
@@ -189,35 +190,20 @@ function Dashboard(props: any) {
               </div>
             </div>
           </div>
+          <div className="h-20"></div>
+          <div className="h-20"></div>
+          <div className="h-20"></div>
+          <div className="h-20"></div>
         </div>
       </section>
-      <section className="bg-neutral-100 flex w-full flex-col items-center pb-32 px-5 max-md:max-w-full max-md:pb-24">
-        <div className="w-full max-w-[1134px] -mb-6 max-md:max-w-full max-md:mb-2.5">
-          <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
-            <div className="flex flex-col items-stretch w-1/5 max-md:w-full max-md:ml-0">
-              <div className="flex w-[204px] shrink-0 h-[204px] flex-col rounded-[50%] max-md:mt-10" />
-            </div>
-            <div className="flex flex-col items-stretch w-4/5 ml-5 max-md:w-full max-md:ml-0">
-              <div className="flex grow flex-col items-stretch mt-10 max-md:max-w-full max-md:mt-10">
-                <h2 className="justify-center text-black text-2xl font-bold leading-9 max-md:max-w-full">
-                  A message from our founder...
-                </h2>
-                <p className="justify-center text-black text-xl font-bold leading-7 mt-1 max-md:max-w-full">
-                  "As the founder of Compound, I've seen firsthand the
-                  life-changing impact of financial literacy. Understanding
-                  money isn't just about dollars and cents; it's about
-                  empowerment, security, and creating a brighter future. That's
-                  why we're dedicated to bringing this knowledge to those who
-                  need it most. With the right education, we can break barriers,
-                  build wealth, and thrive. Together, let's embark on this
-                  journey to financial freedom."
-                  <br />
-                  -Amanda, founder at Compound
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <section className="flex w-full flex-col items-center pb-32 px-5 max-md:max-w-full max-md:pb-24">
+        <Image
+          src={founderMessage}
+          alt="Learning Image"
+          layout="responsive"
+          width={1000}
+          height={625}
+        />
       </section>
       <div className="bg-neutral-400 self-stretch flex min-h-[182px] w-full flex-col max-md:max-w-full" />
     </main>
