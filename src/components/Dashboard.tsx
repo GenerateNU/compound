@@ -1,4 +1,6 @@
 import * as React from "react";
+import learningDiagram from "../assets/learning_diagram.png";
+import Image from "next/image";
 
 export function LearningComponent(props: any) {
   return (
@@ -6,12 +8,16 @@ export function LearningComponent(props: any) {
       <h1 className="text-black text-5xl font-extrabold leading-[68.6px] whitespace-nowrap max-md:text-4xl">
         How you'll learn
       </h1>
-      <img
-        loading="lazy"
-        srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/d4e6301b-848c-4cd4-9839-25ea7efd7f04?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/d4e6301b-848c-4cd4-9839-25ea7efd7f04?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/d4e6301b-848c-4cd4-9839-25ea7efd7f04?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/d4e6301b-848c-4cd4-9839-25ea7efd7f04?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/d4e6301b-848c-4cd4-9839-25ea7efd7f04?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/d4e6301b-848c-4cd4-9839-25ea7efd7f04?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/d4e6301b-848c-4cd4-9839-25ea7efd7f04?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/d4e6301b-848c-4cd4-9839-25ea7efd7f04?apiKey=af7b8d767d8745b3a433de5edc8cf82c&"
-        className="aspect-[1.62] object-contain object-center w-full overflow-hidden self-stretch -mr-5 mt-9 rounded-2xl max-md:max-w-full"
+      <div className="h-20"></div>
+      <div className="h-20"></div>
+      <Image
+        src={learningDiagram}
         alt="Learning Image"
+        layout="responsive"
+        width={1000}
+        height={625}
       />
+      <div className="h-20"></div>
     </div>
   );
 }
