@@ -107,6 +107,7 @@ function Dashboard(props: any) {
           </div>
         </div>
       </section>
+      <div className="h-20"></div>
       <div className="flex items-center justify-between gap-10 mt-9 max-md:max-w-full max-md:flex-wrap max-md:justify-center max-md:mr-1">
         <div className="self-stretch flex grow basis-[0%] flex-col items-stretch pl-6 pr-14 py-7 rounded-[33px] max-md:px-5 ml-10">
           <div className="justify-center text-black text-5xl font-extrabold leading-[68.6px] max-md:text-4xl">
@@ -136,6 +137,8 @@ function Dashboard(props: any) {
           </div>
         </div>
       </div>
+      <div className="h-20"></div>
+      <div className="h-20"></div>
       <LearningComponent />
       <section className="bg-neutral-100 self-stretch flex w-full flex-col items-center mt-32 pl-20 pt-14 pb-20 max-md:max-w-full max-md:mt-10 max-md:pl-5">
         <h2 className="text-black text-5xl font-extrabold leading-[68.6px] whitespace-nowrap ml-14 max-md:max-w-full max-md:text-4xl">
