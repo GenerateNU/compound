@@ -80,6 +80,13 @@ function Dashboard(props: any) {
       </section>
       <div className="bg-zinc-500 self-stretch min-h-[1px] w-full mt-64 max-md:max-w-full max-md:mt-10" />
       <section className="self-stretch flex w-full flex-col items-stretch mt-24 px-20 max-md:max-w-full max-md:mt-10 max-md:px-5">
+        <div className="flex justify-start">
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/e94d25b6-00f7-4363-be43-8976a59637df?apiKey=af7b8d767d8745b3a433de5edc8cf82c&"
+            className="aspect-[0.95] object-contain object-center w-[127px] fill-black overflow-hidden max-w-full self-end"
+          />
+        </div>
         <div className="self-center w-full max-w-[1295px] max-md:max-w-full">
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
             <div className="flex flex-col items-stretch w-6/12 max-md:w-full max-md:ml-0">
@@ -95,18 +102,13 @@ function Dashboard(props: any) {
                   empower minorities, women, and teenagers with the financial
                   knowledge they need to thrive.
                 </p>
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/e94d25b6-00f7-4363-be43-8976a59637df?apiKey=af7b8d767d8745b3a433de5edc8cf82c&"
-                  className="aspect-[0.95] object-contain object-center w-[127px] fill-black overflow-hidden max-w-full self-end"
-                />
               </div>
             </div>
           </div>
         </div>
       </section>
       <div className="flex items-center justify-between gap-10 mt-9 max-md:max-w-full max-md:flex-wrap max-md:justify-center max-md:mr-1">
-        <div className="bg-neutral-200 self-stretch flex grow basis-[0%] flex-col items-stretch pl-6 pr-14 py-7 rounded-[33px] max-md:px-5 ml-10">
+        <div className="self-stretch flex grow basis-[0%] flex-col items-stretch pl-6 pr-14 py-7 rounded-[33px] max-md:px-5 ml-10">
           <div className="justify-center text-black text-5xl font-extrabold leading-[68.6px] max-md:text-4xl">
             30%
           </div>
@@ -115,7 +117,7 @@ function Dashboard(props: any) {
             Americans
           </div>
         </div>
-        <div className="bg-neutral-200 self-stretch flex grow basis-[0%] flex-col items-stretch mt-1 pl-8 pr-10 pt-7 pb-2.5 rounded-[35px] max-md:px-5">
+        <div className="self-stretch flex grow basis-[0%] flex-col items-stretch mt-1 pl-8 pr-10 pt-7 pb-2.5 rounded-[35px] max-md:px-5">
           <div className="justify-center text-black text-5xl font-extrabold leading-[68.6px] max-md:text-4xl">
             35%
           </div>
@@ -124,7 +126,7 @@ function Dashboard(props: any) {
             questions correctly, compared to 55% of men
           </div>
         </div>
-        <div className="bg-neutral-200 self-stretch flex grow basis-[0%] flex-col items-stretch mt-1 pl-7 pr-12 pt-7 pb-9 rounded-[33px] max-md:px-5 mr-10">
+        <div className="self-stretch flex grow basis-[0%] flex-col items-stretch mt-1 pl-7 pr-12 pt-7 pb-9 rounded-[33px] max-md:px-5 mr-10">
           <div className="justify-center text-black text-5xl font-extrabold leading-[68.6px] max-md:text-4xl">
             17
           </div>
