@@ -78,7 +78,7 @@ function Dashboard(props: any) {
           </div>
         </div>
       </section>
-      <div className="bg-zinc-500 self-stretch min-h-[1px] w-full mt-64 max-md:max-w-full max-md:mt-10" />
+      <div className="self-stretch min-h-[1px] w-full mt-64 max-md:max-w-full max-md:mt-10" />
       <section className="self-stretch flex w-full flex-col items-stretch mt-24 px-20 max-md:max-w-full max-md:mt-10 max-md:px-5">
         <div className="flex justify-start">
           <img
