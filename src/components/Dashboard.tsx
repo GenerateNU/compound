@@ -110,11 +110,6 @@ function Dashboard(props: any) {
           <div className="justify-center text-black text-5xl font-extrabold leading-[68.6px] max-md:text-4xl">
             30%
           </div>
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/376fe9a6-ce67-42fd-8d3a-9ad4b172b172?apiKey=af7b8d767d8745b3a433de5edc8cf82c&"
-            className="aspect-[32.14] object-contain object-center w-[225px] fill-black overflow-hidden mt-3.5"
-          />
           <div className="justify-center text-black text-xl font-bold leading-7 mt-8">
             of Black Americans are financially literate compared to 55% of white
             Americans
@@ -124,11 +119,6 @@ function Dashboard(props: any) {
           <div className="justify-center text-black text-5xl font-extrabold leading-[68.6px] max-md:text-4xl">
             35%
           </div>
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/01b13e85-8181-4bad-acdd-47aa36d7f612?apiKey=af7b8d767d8745b3a433de5edc8cf82c&"
-            className="aspect-[33.71] object-contain object-center w-[236px] fill-black overflow-hidden mt-2.5"
-          />
           <div className="justify-center text-black text-xl font-bold leading-7 mt-7">
             of women could answer four or five basic financial literacy
             questions correctly, compared to 55% of men
@@ -138,14 +128,9 @@ function Dashboard(props: any) {
           <div className="justify-center text-black text-5xl font-extrabold leading-[68.6px] max-md:text-4xl">
             17
           </div>
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/7e73b2d7-2bd8-4078-8983-7bc58a4ddab4?apiKey=af7b8d767d8745b3a433de5edc8cf82c&"
-            className="aspect-[32.57] object-contain object-center w-[228px] fill-black overflow-hidden mt-3.5"
-          />
           <div className="justify-center text-black text-xl font-bold leading-7">
-            states in the United States require high school students to take
-            a course in personal finance
+            states in the United States require high school students to take a
+            course in personal finance
           </div>
         </div>
       </div>
