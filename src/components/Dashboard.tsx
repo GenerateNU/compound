@@ -147,55 +147,9 @@ function Dashboard(props: any) {
       <div className="h-20"></div>
       <div className="h-20"></div>
       <LearningComponent />
-      <section className="self-stretch flex w-full flex-col items-center mt-32 pl-20 pt-14 pb-20 max-md:max-w-full max-md:mt-10 max-md:pl-5">
-        <h2 className="text-black text-5xl font-extrabold leading-[68.6px] whitespace-nowrap ml-14 max-md:max-w-full max-md:text-4xl">
-          What our users say
-        </h2>
-        <div className="flex w-full max-w-[1399px] flex-col items-stretch mt-36 max-md:max-w-full max-md:mt-10">
-          <div className="pr-0.5 max-md:max-w-full">
-            <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
-              <div className="flex flex-col items-stretch w-3/5 max-md:w-full max-md:ml-0">
-                <div className="shadow-sm bg-white flex grow flex-col w-full mx-auto pl-11 pr-14 pt-10 pb-24 max-md:max-w-full max-md:mt-10 max-md:px-5">
-                  <div className="flex w-[203px] max-w-full items-stretch justify-between gap-5">
-                    <div className="flex shrink-0 h-[75px] flex-col flex-1 rounded-[50%]" />
-                    <div className="text-black text-3xl font-bold leading-10 self-center whitespace-nowrap my-auto">
-                      Aisha
-                    </div>
-                  </div>
-                  <p className="text-black text-2xl font-semibold leading-8 w-[564px] max-w-full mt-2 self-end">
-                    Super easy and clear! I can not recommend it enough Super
-                    easy and clear! I can not recommend it enough.
-                  </p>
-                </div>
-              </div>
-              <div className="flex flex-col items-stretch w-2/5 ml-5 max-md:w-full max-md:ml-0">
-                <div className="shadow-sm bg-white grow w-full mx-auto pl-14 pt-10 pb-12 max-md:max-w-full max-md:mt-10 max-md:pl-5">
-                  <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
-                    <div className="flex flex-col items-stretch w-[18%] max-md:w-full max-md:ml-0">
-                      <div className="flex w-[75px] shrink-0 h-[75px] flex-col rounded-[50%] max-md:mt-10" />
-                    </div>
-                    <div className="flex flex-col items-stretch w-[82%] ml-5 max-md:w-full max-md:ml-0">
-                      <div className="flex flex-col items-stretch mt-7 max-md:mt-10">
-                        <div className="text-black text-3xl font-bold leading-10">
-                          Youssef
-                        </div>
-                        <div className="text-black text-2xl font-semibold leading-8 mt-8">
-                          Wanted to learn about investing, and Compound made it
-                          10x easier
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="h-20"></div>
-          <div className="h-20"></div>
-          <div className="h-20"></div>
-          <div className="h-20"></div>
-        </div>
-      </section>
+      <div className="h-20"></div>
+      <div className="h-20"></div>
+      <div className="h-20"></div>
       <section className="flex w-full flex-col items-center pb-32 px-5 max-md:max-w-full max-md:pb-24">
         <Image
           src={founderMessage}
