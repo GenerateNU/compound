@@ -1,31 +1,41 @@
-import React from "react";
+import {useState} from "react";
 
 function FinancialLiteracyForm(props: any) {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
-    <section className="bg-white">
-      <header className="flex flex-row items-stretch max-md:flex-col max-md:items-stretch max-md:gap-0">
-        <div className="flex flex-col items-stretch w-[64%] max-md:w-full max-md:ml-0">
+    <section className="bg-white h-screen w-screen">
+      <header className="flex">
+        <div className="grow flex flex-col items-stretch">
           <div className="flex flex-col items-stretch max-md:max-w-full">
-            <div className="bg-neutral-100 flex w-full items-stretch justify-between gap-5 pl-9 pr-16 py-8 max-md:max-w-full max-md:flex-wrap max-md:px-5">
-              <div className="items-stretch flex justify-between gap-4">
-                <div className="flex w-14 shrink-0 h-14 flex-col rounded-[50%]" />
-                <div className="text-black text-2xl font-extrabold leading-9 self-center grow whitespace-nowrap my-auto">
+            <div className="bg-neutral-100 flex w-full items-center justify-between py-8 p-10">
+              <div className="flex justify-between items-center gap-4">
+                <div className="flex w-14 shrink-0 h-14 flex-col rounded-[50%] bg-neutral-400" />
+                <div className="text-black text-2xl font-extrabold">
                   Compound
                 </div>
               </div>
-              <div className="text-black text-center text-base leading-5 self-center grow whitespace-nowrap my-auto">
+              <div className="text-black">
                 Already have an account?{" "}
                 <a href="" className="text-blue-500">
                   Sign in
                 </a>
               </div>
             </div>
-            <div className="self-center flex w-[573px] max-w-full flex-col mt-36 px-5 max-md:mt-10">
-              <h1 className="text-black text-4xl font-extrabold leading-[51px] self-stretch ml-0 mr-0 whitespace-nowrap max-md:max-w-full">
+            <div className="flex w-full flex-col mt-10 px-5 max-md:mt-10">
+              <h1 className="text-black text-4xl font-extrabold max-w-48 mb-5 mx-auto">
                 Your start to financial literacy.
               </h1>
-              <p className="text-black text-base font-medium leading-6 self-stretch -mr-5 mt-7 max-md:max-w-full">
-                Unlock your adventure to coins, confidence, and a wealth of
+              <p className="text-black font-medium max-w-48 mx-auto text-center">
+                Unlock your adventure to coins, <br></br>
+                confidence, and a wealth of
                 knowledge.
               </p>
               <label
@@ -41,12 +51,15 @@ function FinancialLiteracyForm(props: any) {
                   className="aspect-square object-contain object-center w-6 overflow-hidden shrink-0 max-w-full"
                   alt="Email Icon"
                 />
-                <div className="text-zinc-900 text-base leading-6 grow shrink basis-auto">
+                <div className="text-zinc-900 text-base w-full">
                   <input
                     type="email"
                     id="email"
                     name="email"
                     placeholder="Email"
+                    className="w-full"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
               </div>
@@ -59,10 +72,13 @@ function FinancialLiteracyForm(props: any) {
               <div className="items-stretch self-center border-[color:var(--Medium-gray,#B2B9C0)] bg-white flex w-[408px] max-w-full gap-2.5 mt-2 px-4 py-2 border-2 border-solid">
                 <div className="text-zinc-900 text-base leading-6 grow shrink basis-auto">
                   <input
-                    type="password"
+                    type={showPassword ? 'text' : 'password'}
                     id="password"
                     name="password"
                     placeholder="Password"
+                    className="w-full"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
                 <img
@@ -70,6 +86,7 @@ function FinancialLiteracyForm(props: any) {
                   src="https://cdn.builder.io/api/v1/image/assets/TEMP/78cb4d33-f456-43c6-bd15-c05a56503213?apiKey=af7b8d767d8745b3a433de5edc8cf82c&"
                   className="aspect-square object-contain object-center w-6 overflow-hidden shrink-0 max-w-full"
                   alt="Password Icon"
+                  onClick={togglePasswordVisibility}
                 />
               </div>
               <a
@@ -87,11 +104,11 @@ function FinancialLiteracyForm(props: any) {
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-stretch w-[36%] ml-5 max-md:w-full max-md:ml-0">
+        <div className="flex grow-0 flex-col items-stretch">
           <img
             loading="lazy"
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/3b927267-194e-4d7c-833b-e6068dd9aca1?apiKey=af7b8d767d8745b3a433de5edc8cf82c&"
-            className="aspect-[0.56] object-contain object-center w-full items-start overflow-hidden grow max-md:max-w-full"
+            className="h-screen"
             alt="Financial Literacy Image"
           />
         </div>
