@@ -104,6 +104,25 @@ export default class Users {
     }
   }
 
+  public async updateUser(data: any) {
+    try {
+      await this.usersDB.update({
+        where: { email: data.email },
+        data: data,
+      });
+    } catch (error) {
+      if (error instanceof PrismaClientKnownRequestError) {
+        if (error.code === UNIQUE_CONSTRAINT_ERROR_CODE) {
+          const parseErrorMessage = error.message.split("`");
+          const failedOn = parseErrorMessage[parseErrorMessage.length - 2];
+          throw new Error("Unique Constraint Violation Failed on " + failedOn);
+        }
+      } else {
+        throw error;
+      }
+    }
+  }
+
   public async signUpProviderDetails(userData: any) {
     const defaultData = this.setDefaultAttributes(userData);
     await this.usersDB.create({ data: defaultData });
