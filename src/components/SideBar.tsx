@@ -90,14 +90,7 @@ const Sidebar = () => {
       href: "achievements",
     },
     {
-      name: "Profile",
-      imageSrc:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/dbb19464-dd76-437e-97e8-bf4a62e2851a?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
-      alt: "Profile",
-      href: "/profile",
-    },
-    {
-      name: "More",
+      name: "Settings",
       imageSrc:
         "https://cdn.builder.io/api/v1/image/assets/TEMP/899f0a1f-0364-4caf-b4eb-a94632a014cd?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
       alt: "More",
@@ -119,7 +112,7 @@ const Sidebar = () => {
             borderRadius: "10px",
             marginTop: "50px",
           }}
-          className="bg-zinc-100"
+          className="pl-2 bg-zinc-100"
         >
           {menuItems.map((item) => (
             <NavigationButton

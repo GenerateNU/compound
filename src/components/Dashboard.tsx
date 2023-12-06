@@ -59,7 +59,7 @@ function Dashboard(props: any) {
                   </div>
                   <div className="flex flex-col items-stretch w-[62%] ml-5 max-md:w-full max-md:ml-0">
                     <a
-                      href="postDashboard"
+                      href="account"
                       className="text-black text-center text-3xl font-semibold leading-10 bg-zinc-300 items-center w-full mx-auto px-5 py-7 rounded-[50px]"
                     >
                       Get Started

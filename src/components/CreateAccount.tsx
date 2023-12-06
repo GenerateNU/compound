@@ -22,12 +22,12 @@ function FinancialLiteracyForm(props: any) {
                   Compound
                 </div>
               </div>
-              <div className="text-black">
+              {/* <div className="text-black">
                 Already have an account?{" "}
                 <a href="" className="text-blue-500">
                   Sign in
                 </a>
-              </div>
+              </div> */}
             </div>
             <div className="flex w-full flex-col mt-10 px-5 max-md:mt-10">
               <h1 className="text-black text-4xl font-extrabold max-w-48 mb-5 mx-auto">
@@ -93,7 +93,7 @@ function FinancialLiteracyForm(props: any) {
                 className="text-white text-center text-base font-semibold leading-4 whitespace-nowrap justify-center items-center bg-zinc-600 self-center w-[408px] max-w-full mt-10 px-5 py-3 rounded-lg max-md:mt-10"
                 href="account/confirmation"
               >
-                Sign up with my email
+                Sign up / Sign in 
               </a>
               <div className="text-black text-xl font-bold leading-6 self-center whitespace-nowrap mt-12 max-md:mt-10">
                 or
@@ -104,14 +104,14 @@ function FinancialLiteracyForm(props: any) {
             </div>
           </div>
         </div>
-        <div className="flex grow-0 flex-col items-stretch">
+        {/* <div className="flex grow-0 flex-col items-stretch">
           <img
             loading="lazy"
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/3b927267-194e-4d7c-833b-e6068dd9aca1?apiKey=af7b8d767d8745b3a433de5edc8cf82c&"
             className="h-screen"
             alt="Financial Literacy Image"
           />
-        </div>
+        </div> */}
       </header>
     </section>
   );
