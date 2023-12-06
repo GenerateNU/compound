@@ -1,4 +1,40 @@
 import { useState } from "react";
+import logo from "../assets/logo.png";
+import Image from "next/image";
+
+import React from "react";
+
+interface ProfileProps {
+  username: string;
+  imageUrl: string;
+}
+
+const Profile: React.FC<ProfileProps> = ({ username, imageUrl }) => {
+  return (
+    <div className="flex items-center justify-between">
+      <div className="flex items-center">
+        <img src={imageUrl} alt="Profile" className="w-12 h-12 rounded-full" />
+        <span className="ml-2 text-lg font-bold">{username}</span>
+      </div>
+      <button className="focus:outline-none">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          className="h-8 w-8"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 6v0m0 6v0m0 6v0"
+          />
+        </svg>
+      </button>
+    </div>
+  );
+};
 
 const NavigationButton = ({
   name,
@@ -13,11 +49,15 @@ const NavigationButton = ({
       href={href}
       onClick={() => onClick(name)}
       className={`flex items-center justify-between gap-3 p-3 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg mb-4 ${
-        isActive ? "bg-zinc-300" : ""
+        isActive ? "bg-blue-500" : ""
       }`}
     >
       <img loading="lazy" src={imageSrc} alt={alt} className="w-6" />
-      <span className="text-black text-sm font-semibold leading-5 tracking-wide grow whitespace-nowrap self-start">
+      <span
+        className={`text-md font-semibold leading-5 tracking-wide grow whitespace-nowrap self-start ${
+          isActive ? "text-white" : "text-blue-500"
+        }`}
+      >
         {name}
       </span>
     </a>
@@ -67,28 +107,38 @@ const Sidebar = () => {
 
   return (
     <section className="min-h-screen flex flex-col items-stretch w-[19%] max-md:w-full max-md:ml-0">
-      <header className="bg-zinc-100 flex w-full grow flex-col mx-auto pl-10 pr-16 py-11 max-md:mt-7 max-md:px-5">
-        <div className="justify-center items-stretch flex w-[161px] max-w-full gap-3.5 ml-3 max-md:ml-2.5 pb-5">
+      <header className="bg- flex w-full grow flex-col mx-auto pl-10 pr-16 py-11 max-md:mt-7 max-md:px-5">
+        <div className="justify-center items-stretch flex w-[200px] max-w-full gap-3.5 max-md:ml-2.5 pb-5">
           <a href="/" className="flex">
-            <div className="bg-stone-300 flex w-[51px] shrink-0 h-[53px] flex-col rounded-[67px]" />
-          </a>
-          <a href="/" className="flex">
-            <h1 className="text-black text-lg font-extrabold leading-6 tracking-tight self-center grow whitespace-nowrap my-auto">
-              Compound
-            </h1>
+            <Image src={logo} alt={"temp"}></Image>
           </a>
         </div>
-        {menuItems.map((item) => (
-          <NavigationButton
-            key={item.name}
-            name={item.name}
-            imageSrc={item.imageSrc}
-            alt={item.alt}
-            isActive={activeButton === item.name}
-            onClick={setActiveButton}
-            href={item.href}
-          />
-        ))}
+        <div
+          style={{
+            border: "1px solid #FFF",
+            borderRadius: "10px",
+            marginTop: "50px",
+          }}
+          className="bg-zinc-100"
+        >
+          {menuItems.map((item) => (
+            <NavigationButton
+              key={item.name}
+              name={item.name}
+              imageSrc={item.imageSrc}
+              alt={item.alt}
+              isActive={activeButton === item.name}
+              onClick={setActiveButton}
+              href={item.href}
+            />
+          ))}
+        </div>
+        <div className="mt-auto">
+          <Profile
+            username="John Smith"
+            imageUrl="https://api.dicebear.com/7.x/adventurer/svg?seed=Mittens"
+          ></Profile>
+        </div>
       </header>
     </section>
   );

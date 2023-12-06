@@ -1,6 +1,6 @@
 import Dashboard from "@/components/Dashboard";
 
-export default function SignInPage(): JSX.Element {
+export default function DashboardPage(): JSX.Element {
   return (
     <div>
       <Dashboard />
