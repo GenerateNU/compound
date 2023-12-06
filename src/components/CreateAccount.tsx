@@ -22,6 +22,7 @@ function FinancialLiteracyForm(props: any) {
     });
 
     if (res.ok) {
+      localStorage.setItem("email", email); // Store email to localStorage
       console.log("user created");
     } else {
       console.log("user not created");
@@ -38,6 +39,7 @@ function FinancialLiteracyForm(props: any) {
 
     if (res.ok) {
       console.log("user found, logging in, redirecting to dashboard");
+      localStorage.setItem("email", email); // Store email to localStorage
       router.push("/postDashboard");
     } else {
       console.log("user not found, creating user and redirecting to sign up ");
