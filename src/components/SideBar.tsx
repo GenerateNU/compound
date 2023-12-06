@@ -54,7 +54,7 @@ const NavigationButton = ({
     >
       <img loading="lazy" src={imageSrc} alt={alt} className="w-6" />
       <span
-        className={`text-md font-semibold leading-5 tracking-wide grow whitespace-nowrap self-start ${
+        className={`text-lg font-semibold leading-5 tracking-wide grow whitespace-nowrap self-start ${
           isActive ? "text-white" : "text-blue-500"
         }`}
       >
@@ -107,10 +107,10 @@ const Sidebar = () => {
 
   return (
     <section className="min-h-screen flex flex-col items-stretch w-[19%] max-md:w-full max-md:ml-0">
-      <header className="bg- flex w-full grow flex-col mx-auto pl-10 pr-16 py-11 max-md:mt-7 max-md:px-5">
-        <div className="justify-center items-stretch flex w-[200px] max-w-full gap-3.5 max-md:ml-2.5 pb-5">
+      <header className="bg- flex w-full grow flex-col mx-auto pl-10 pr-8 py-11 max-md:mt-7 max-md:px-5">
+        <div className="justify-start items-stretch flex w-[300px] max-w-full gap-3.5 max-md:ml-2.5 pb-5">
           <a href="/" className="flex">
-            <Image src={logo} alt={"temp"}></Image>
+            <Image src={logo} alt={"temp"} width={200}></Image>
           </a>
         </div>
         <div
