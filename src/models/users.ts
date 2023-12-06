@@ -2,7 +2,6 @@ import { PrismaClient, User } from "@prisma/client";
 
 import isEmail from "isemail";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
-import { UserData, UserReturnType } from "../../lib/CompoundTypes";
 import prisma from "../../lib/client";
 
 // Uer Information that is Insensitive
@@ -19,7 +18,7 @@ export default class Users {
 
   //updates the user of the given id with the given data given of type object and returns the userinformation
   // which is shown nowhere or returns an err
-  public async updateUserById(id: number, updatedData: UserData) {
+  public async updateUserById(id: number, updatedData: any) {
     try {
       const UserInformation: User | null = await this.usersDB.update({
         where: { id: id },
@@ -31,60 +30,67 @@ export default class Users {
     }
   }
 
-  public async updateUserModuleExam(userId: number, moduleId: number, moduleExamId: number, results: boolean[], score: number) {
-    let user: User;
+  // public async updateUserModuleExam(
+  //   userId: number,
+  //   moduleId: number,
+  //   moduleExamId: number,
+  //   results: boolean[],
+  //   score: number
+  // ) {
+  //   let user: User;
 
+  //   try {
+  //     const user = await this.usersDB.findUnique({
+  //       where: { id: userId },
+  //     });
+  //     if (!user) {
+  //       throw "User Not Found";
+  //     }
+
+  //     user.moduleExamScores[moduleId] = {
+  //       moduleExamId: moduleExamId,
+  //       results: results,
+  //       score: score,
+  //     };
+  //     await this.usersDB.update({
+  //       where: { id: userId },
+  //       data: {
+  //         moduleExamScores: user?.moduleExamScores,
+  //       },
+  //     });
+  //   } catch (Error) {
+  //     throw "User Not Found";
+  //   }
+  // }
+  // // Get Insensitive User Information By ID
+  // public async getUserById(id: number) {
+  //   try {
+  //     // Select Insensitive User Information from Database based on ID
+  //     const UserInformation: InsensitiveUserInformation | null =
+  //       await this.usersDB.findUnique({
+  //         where: {
+  //           id,
+  //         },
+  //         select: {
+  //           id: true,
+  //           email: true,
+  //           phoneNumber: true,
+  //           firstName: true,
+  //           lastName: true,
+  //         },
+  //       });
+
+  //     return UserInformation;
+  //   } catch (Error) {
+  //     throw "Error: User ID is not an Number";
+  //   }
+  // }
+
+  public async signUp(data: any) {
     try {
-      const user = await this.usersDB.findUnique({
-        where: { id: userId },
-      });
-      if (!user) {
-        throw "User Not Found"
-      }
-
-      user.moduleExamScores[moduleId] = {"moduleExamId": moduleExamId, "results":results, "score": score}
-      await this.usersDB.update({
-        where: { id: userId },
-        data: {
-          moduleExamScores: user?.moduleExamScores,
-        },
-      });
-
-    } catch (Error) {
-      throw "User Not Found"
-    }
-    
-  
-  }
-  // Get Insensitive User Information By ID
-  public async getUserById(id: number) {
-    try {
-      // Select Insensitive User Information from Database based on ID
-      const UserInformation: InsensitiveUserInformation | null =
-        await this.usersDB.findUnique({
-          where: {
-            id,
-          },
-          select: {
-            id: true,
-            email: true,
-            phoneNumber: true,
-            firstName: true,
-            lastName: true,
-          },
-        });
-
-      return UserInformation;
-    } catch (Error) {
-      throw "Error: User ID is not an Number";
-    }
-  }
-
-  public async signUp(data: UserData) {
-    try {
-      this.validateInputData(data);
-      const extendedData = this.setDefaultAttributes(data);
-      await this.usersDB.create({ data: extendedData });
+      // this.validateInputData(data);
+      // const extendedData = this.setDefaultAttributes(data);
+      await this.usersDB.create({ data: data });
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError) {
         if (error.code === UNIQUE_CONSTRAINT_ERROR_CODE) {
@@ -98,12 +104,12 @@ export default class Users {
     }
   }
 
-  public async signUpProviderDetails(userData: UserData) {
+  public async signUpProviderDetails(userData: any) {
     const defaultData = this.setDefaultAttributes(userData);
     await this.usersDB.create({ data: defaultData });
   }
 
-  private setDefaultAttributes(data: UserData): UserData {
+  private setDefaultAttributes(data: any): any {
     return {
       ...data,
       //   verified: true, // TODO: change this and add admin page
@@ -134,7 +140,7 @@ export default class Users {
     }
   }
 
-  private validateInputData(data: UserData) {
+  private validateInputData(data: any) {
     this.validateEmail(data.email);
     // this.validatePhoneNumber(data.phone_number); // TODO: uncomment this
   }
@@ -148,14 +154,14 @@ export default class Users {
       throw new Error("user not found");
     }
 
-    const userDetails: UserReturnType = {
+    const userDetails: any = {
       email: user.email as string,
       id: user.id as number,
       firstName: user.firstName,
       lastName: user.lastName,
     };
 
-    return userDetails;
+    return user;
   }
 
   public async isUserInDatabase(email: string): Promise<boolean> {

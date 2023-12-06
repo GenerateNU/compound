@@ -2,11 +2,10 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import persistentUserInstance from "../../../../lib/persistentUserInstance";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
-import { UserReturnType, Message } from "../../../../lib/CompoundTypes";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Message>
+  res: NextApiResponse<any>
 ) {
   const session = await getServerSession(req, res, authOptions);
 
@@ -20,10 +19,7 @@ export default async function handler(
   return res.status(405).send({ message: "request method not supported" });
 }
 
-async function registerUser(
-  req: NextApiRequest,
-  res: NextApiResponse<Message>
-) {
+async function registerUser(req: NextApiRequest, res: NextApiResponse<any>) {
   try {
     await persistentUserInstance.signUp({
       ...req.body,
@@ -34,13 +30,10 @@ async function registerUser(
   return res.status(200).send({ message: "user added" });
 }
 
-async function getUser(
-  req: NextApiRequest,
-  res: NextApiResponse<UserReturnType | Message>
-) {
+async function getUser(req: NextApiRequest, res: NextApiResponse<any>) {
   try {
-    const body = req.body;
-    const userDetails = await persistentUserInstance.getUser(body);
+    const email = req.query.email as string;
+    const userDetails = await persistentUserInstance.getUser(email);
     return res.status(200).send(userDetails);
   } catch (error) {
     return res.status(403).send({ message: String(error) });

@@ -1,14 +1,50 @@
-import {useState} from "react";
+import { useState } from "react";
+import { useRouter } from "next/router";
 
 function FinancialLiteracyForm(props: any) {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
+  async function createUser() {
+    const res = await fetch("/api/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    if (res.ok) {
+      console.log("user created");
+    } else {
+      console.log("user not created");
+    }
+  }
+
+  async function signUpAndRedirect() {
+    const res = await fetch(`/api/users?email=${encodeURIComponent(email)}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (res.ok) {
+      console.log("user found, logging in, redirecting to dashboard");
+      router.push("/postDashboard");
+    } else {
+      console.log("user not found, creating user and redirecting to sign up ");
+      await createUser();
+      router.push("/account/confirmation");
+    }
+  }
 
   return (
     <section className="bg-white h-screen w-screen">
@@ -35,8 +71,7 @@ function FinancialLiteracyForm(props: any) {
               </h1>
               <p className="text-black font-medium max-w-48 mx-auto text-center">
                 Unlock your adventure to coins, <br></br>
-                confidence, and a wealth of
-                knowledge.
+                confidence, and a wealth of knowledge.
               </p>
               <label
                 htmlFor="email"
@@ -72,7 +107,7 @@ function FinancialLiteracyForm(props: any) {
               <div className="items-stretch self-center border-[color:var(--Medium-gray,#B2B9C0)] bg-white flex w-[408px] max-w-full gap-2.5 mt-2 px-4 py-2 border-2 border-solid">
                 <div className="text-zinc-900 text-base leading-6 grow shrink basis-auto">
                   <input
-                    type={showPassword ? 'text' : 'password'}
+                    type={showPassword ? "text" : "password"}
                     id="password"
                     name="password"
                     placeholder="Password"
@@ -89,12 +124,14 @@ function FinancialLiteracyForm(props: any) {
                   onClick={togglePasswordVisibility}
                 />
               </div>
-              <a
+              <button
                 className="text-white text-center text-base font-semibold leading-4 whitespace-nowrap justify-center items-center bg-zinc-600 self-center w-[408px] max-w-full mt-10 px-5 py-3 rounded-lg max-md:mt-10"
-                href="account/confirmation"
+                onClick={() => {
+                  signUpAndRedirect();
+                }}
               >
-                Sign up / Sign in 
-              </a>
+                Sign up / Sign in
+              </button>
               <div className="text-black text-xl font-bold leading-6 self-center whitespace-nowrap mt-12 max-md:mt-10">
                 or
               </div>
