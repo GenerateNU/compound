@@ -1,6 +1,45 @@
 import * as React from "react";
+import { useState } from "react";
+
+
 
 export default function ProfileWizard(props: any) {
+  const [interests, setInterests] = useState(new Set<string>())
+
+
+  const addInterestsToDB = async () => {
+    const toBeConvertedToJSON:string[] = []
+    interests.forEach(value => {
+      toBeConvertedToJSON.push(value)
+    })
+    const email = localStorage.getItem("email")
+    const interestsArray = Array.from(interests);
+
+    // TODO: format the body in the actual way the database needs it
+    const body = {
+      "email": email,
+      "financialInterests": interestsArray
+    }
+
+    const res = await fetch("/api/users", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+  }
+
+  const handleClick = (text: string) => {
+    if (interests.has(text)) {
+      setInterests(prev => {
+        prev.delete(text)
+        return new Set(prev)})
+    } else {
+      setInterests(previousState => previousState.add(text))
+    }
+  }
+
   return (
     <main className="bg-white flex flex-col items-center px-5">
       <section className="flex w-full max-w-[1292px] flex-col items-stretch mt-8 mb-8 max-md:max-w-full max-md:my-10">
@@ -80,16 +119,16 @@ export default function ProfileWizard(props: any) {
               <div className="text-zinc-600 text-center text-base font-semibold leading-4 whitespace-nowrap justify-center items-stretch bg-white aspect-[1.0344827586206897] px-2.5 py-2 rounded-lg border-2 border-solid border-zinc-600">
                 2
               </div>
-              <div className="justify-left text-black text-left text-2xl leading-8 grow shrink basis-auto mt-1.5 self-start">
+              <div className="justify-center text-black text-left text-2xl leading-8 grow shrink basis-auto mt-1.5 self-start">
                 My Financial Interests
               </div>
             </div>
 
             <div className="pt-12">
               <div className="flex w-full max-w-full items-stretch justify-center gap-5 pb-10">
-                <button className="justify-between items-stretch border-[color:var(--Dark-gray,#495057)] flex gap-2 px-8 py-3 rounded-lg border-2 border-solid max-md:px-5">
+                <button onClick={() => handleClick("Real Estate")} className="justify-between items-stretch border-[color:var(--Dark-gray,#495057)] flex gap-2 px-8 py-3 rounded-lg border-2 border-solid max-md:px-5">
                   <div className="text-zinc-600 text-center text-base font-semibold leading-4">
-                    Button
+                    Real Estate
                   </div>
                   <img
                     loading="lazy"
@@ -97,9 +136,9 @@ export default function ProfileWizard(props: any) {
                     className="aspect-square object-contain object-center w-[18px] overflow-hidden shrink-0 max-w-full"
                   />
                 </button>
-                <button className="justify-between items-stretch border-[color:var(--Dark-gray,#495057)] flex gap-2 px-8 py-3 rounded-lg border-2 border-solid max-md:px-5">
+                <button onClick={() => handleClick("Saving Money")} className="justify-between items-stretch border-[color:var(--Dark-gray,#495057)] flex gap-2 px-8 py-3 rounded-lg border-2 border-solid max-md:px-5">
                   <div className="text-zinc-600 text-center text-base font-semibold leading-4">
-                    Button
+                    Saving Money
                   </div>
                   <img
                     loading="lazy"
@@ -109,9 +148,9 @@ export default function ProfileWizard(props: any) {
                 </button>
               </div>
               <div className="flex w-full max-w-full items-stretch justify-center gap-5 pb-10">
-                <button className="justify-between items-stretch border-[color:var(--Dark-gray,#495057)] flex gap-2 px-8 py-3 rounded-lg border-2 border-solid max-md:px-5">
+                <button onClick={() => handleClick("Assets")} className="justify-between items-stretch border-[color:var(--Dark-gray,#495057)] flex gap-2 px-8 py-3 rounded-lg border-2 border-solid max-md:px-5">
                   <div className="text-zinc-600 text-center text-base font-semibold leading-4">
-                    Button
+                    Assets
                   </div>
                   <img
                     loading="lazy"
@@ -119,9 +158,9 @@ export default function ProfileWizard(props: any) {
                     className="aspect-square object-contain object-center w-[18px] overflow-hidden shrink-0 max-w-full"
                   />
                 </button>
-                <button className="justify-between items-stretch border-[color:var(--Dark-gray,#495057)] flex gap-2 px-8 py-3 rounded-lg border-2 border-solid max-md:px-5">
+                <button onClick={() => handleClick("Money Management")} className="justify-between items-stretch border-[color:var(--Dark-gray,#495057)] flex gap-2 px-8 py-3 rounded-lg border-2 border-solid max-md:px-5">
                   <div className="text-zinc-600 text-center text-base font-semibold leading-4">
-                    Button
+                    Money Management
                   </div>
                   <img
                     loading="lazy"
@@ -131,9 +170,9 @@ export default function ProfileWizard(props: any) {
                 </button>
               </div>
               <div className="flex w-full max-w-full items-stretch justify-center gap-5 pb-10">
-                <button className="justify-between items-stretch border-[color:var(--Dark-gray,#495057)] flex gap-2 px-8 py-3 rounded-lg border-2 border-solid max-md:px-5">
+                <button onClick={() => handleClick("Stocks")}  className="justify-between items-stretch border-[color:var(--Dark-gray,#495057)] flex gap-2 px-8 py-3 rounded-lg border-2 border-solid max-md:px-5">
                   <div className="text-zinc-600 text-center text-base font-semibold leading-4">
-                    Button
+                    Stocks
                   </div>
                   <img
                     loading="lazy"
@@ -141,9 +180,9 @@ export default function ProfileWizard(props: any) {
                     className="aspect-square object-contain object-center w-[18px] overflow-hidden shrink-0 max-w-full"
                   />
                 </button>
-                <button className="justify-between items-stretch border-[color:var(--Dark-gray,#495057)] flex gap-2 px-8 py-3 rounded-lg border-2 border-solid max-md:px-5">
+                <button onClick={() => handleClick("Interest")}  className="justify-between items-stretch border-[color:var(--Dark-gray,#495057)] flex gap-2 px-8 py-3 rounded-lg border-2 border-solid max-md:px-5">
                   <div className="text-zinc-600 text-center text-base font-semibold leading-4">
-                    Button
+                    Interest
                   </div>
                   <img
                     loading="lazy"
@@ -153,9 +192,9 @@ export default function ProfileWizard(props: any) {
                 </button>
               </div>
               <div className="flex w-full max-w-full items-stretch justify-center gap-5 pb-10">
-                <button className="justify-between items-stretch border-[color:var(--Dark-gray,#495057)] flex gap-2 px-8 py-3 rounded-lg border-2 border-solid max-md:px-5">
+                <button onClick={() => handleClick("Budgeting")}  className="justify-between items-stretch border-[color:var(--Dark-gray,#495057)] flex gap-2 px-8 py-3 rounded-lg border-2 border-solid max-md:px-5">
                   <div className="text-zinc-600 text-center text-base font-semibold leading-4">
-                    Button
+                    Budgeting
                   </div>
                   <img
                     loading="lazy"
@@ -163,9 +202,9 @@ export default function ProfileWizard(props: any) {
                     className="aspect-square object-contain object-center w-[18px] overflow-hidden shrink-0 max-w-full"
                   />
                 </button>
-                <button className="justify-between items-stretch border-[color:var(--Dark-gray,#495057)] flex gap-2 px-8 py-3 rounded-lg border-2 border-solid max-md:px-5">
+                <button onClick={() => handleClick("Credit")} className="justify-between items-stretch border-[color:var(--Dark-gray,#495057)] flex gap-2 px-8 py-3 rounded-lg border-2 border-solid max-md:px-5">
                   <div className="text-zinc-600 text-center text-base font-semibold leading-4">
-                    Button
+                    Credit
                   </div>
                   <img
                     loading="lazy"
@@ -183,6 +222,7 @@ export default function ProfileWizard(props: any) {
           </button>
           <a
             className="text-white text-center text-base font-semibold leading-4 whitespace-nowrap justify-center items-center bg-zinc-600 grow px-5 py-3 rounded-lg"
+            onClick={async () => addInterestsToDB() }
             href="financialInfo"
           >
             Save and Continue
