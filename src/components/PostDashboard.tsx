@@ -2,6 +2,7 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import Sidebar from "./SideBar";
 import Utils from "../utils";
+import styled, { keyframes } from "styled-components";
 
 // Card.jsx - Base card component
 const Card = ({ title, children }: any) => {
@@ -22,20 +23,30 @@ const Card = ({ title, children }: any) => {
 };
 
 const ProgressBar = ({ xp }: any) => {
+  const loading = keyframes`
+    0% {
+      width: 0;
+    }
+    100% {
+      width: ${Math.max(xp % 100, 5)}%;
+    }
+  `;
+
+  const LoadingDiv = styled.div`
+    animation: ${loading} 5s ease-in-out;
+    background-color: var(--color-red);
+  `;
+
   return (
     <div className="items-stretch self-stretch flex flex-col pt-1">
       <section
         style={{ backgroundColor: "var(--color-light-red)" }}
         className="bg-neutral-400 flex w-full flex-col items-stretch rounded-3xl"
       >
-        <div
+        <LoadingDiv
           className="flex min-h-[35px] w-1/2 flex-col rounded-3xl"
           role="presentation"
           aria-label="Content"
-          style={{
-            width: `${Math.max(xp % 100, 5)}%`,
-            backgroundColor: "var(--color-red)",
-          }}
         />
       </section>
     </div>
@@ -74,7 +85,10 @@ const TotalXP = ({ xp }: any) => {
 
 const OtherToolsCard = ({ title, description, buttonName }: any) => {
   return (
-    <div className="relative flex flex-col items-stretch w-fullmax-md:w-full max-md:ml-0">
+    <div
+      className="relative flex flex-col items-stretch w-fullmax-md:w-full max-md:ml-0"
+      style={{ width: "300px" }}
+    >
       <div
         className="w-full absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-10 rounded-t-xl"
         style={{ backgroundColor: "var(--color-mint)" }}
@@ -269,7 +283,6 @@ export default function UpdatedComponent(props: any) {
                 description="Access financial calculators to practice topics such as budgeting."
                 buttonName="Try now"
               />
-              {/* temp */}
               <OtherToolsCard
                 title="Mentor Market"
                 description="Match with a financial assistant to further your future goals."
