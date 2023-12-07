@@ -4,20 +4,20 @@ import Image from "next/image";
 
 import React from "react";
 import { useRouter } from "next/router";
+import avatar1 from "../assets/avatars/avatar1.png";
+import avatar2 from "../assets/avatars/avatar2.png";
+import avatar3 from "../assets/avatars/avatar3.png";
+import avatar4 from "../assets/avatars/avatar4.png";
+import avatar5 from "../assets/avatars/avatar5.png";
 
-interface ProfileProps {
-  username: string;
-  imageUrl: string;
-}
-
-const Profile: React.FC<ProfileProps> = ({ username, imageUrl }) => {
+const Profile: any = (props: { username: string; src: string }) => {
   const router = useRouter();
 
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center">
-        <img src={imageUrl} alt="Profile" className="w-12 h-12 rounded-full" />
-        <span className="ml-2 text-lg font-bold">{username}</span>
+        <Image height="50" width="50" src={props.src} alt={""}></Image>
+        <span className="ml-2 text-lg font-bold">{props.username}</span>
       </div>
       <button
         className="focus:outline-none"
@@ -76,11 +76,7 @@ const NavigationButton = ({
 const Sidebar = (props: { name: string; avatarIndex: number }) => {
   const [activeButton, setActiveButton] = useState("Dashboard");
 
-  const avatarUrls = [
-    "https://api.dicebear.com/7.x/adventurer/svg?seed=Mittens",
-    "https://api.dicebear.com/7.x/adventurer/svg?seed=Fluffy",
-    "https://api.dicebear.com/7.x/adventurer/svg?seed=Whiskers",
-  ];
+  const avatarUrls = [avatar1, avatar2, avatar3, avatar4, avatar5];
 
   const menuItems = [
     {
@@ -147,7 +143,7 @@ const Sidebar = (props: { name: string; avatarIndex: number }) => {
         <div className="mt-auto">
           <Profile
             username={props.name ?? ""}
-            imageUrl={avatarUrls[props.avatarIndex]}
+            src={avatarUrls[props.avatarIndex]}
           ></Profile>
         </div>
       </header>

@@ -1,6 +1,9 @@
 import * as React from "react";
 
-export default function ModuleReccomendations(props: {rec1: string, rec2: string}) {
+export default function ModuleReccomendations(props: {
+  rec1: string;
+  rec2: string;
+}) {
   return (
     <div className="items-stretch bg-white flex flex-col px-6 py-4 rounded-lg max-md:px-5">
       <div className="text-blue-950 text-xl font-extrabold leading-7 whitespace-nowrap max-md:max-w-full">
@@ -46,7 +49,7 @@ export default function ModuleReccomendations(props: {rec1: string, rec2: string
                 </div>
                 <div className="justify-center items-stretch self-stretch flex grow basis-[0%] flex-col">
                   <div className="text-blue-950 text-xl font-extrabold leading-7 whitespace-nowrap">
-                    {props.rec1 ?? "Credit 101"}
+                    {props.rec2 ?? "Credit 101"}
                   </div>
                 </div>
               </div>
