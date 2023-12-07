@@ -21,6 +21,33 @@ const Card = ({ title, children }: any) => {
   );
 };
 
+const OtherToolsCard = ({ title, description, buttonName }: any) => {
+  return (
+    <div className="relative flex flex-col items-stretch w-full ml-5 max-md:w-full max-md:ml-0">
+      <div
+        className="w-full absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-10 rounded-t-xl"
+        style={{ backgroundColor: "#8EE5CB" }}
+      />
+      <div className="items-stretch self-stretch bg-white flex grow flex-col w-full mx-auto px-7 py-6 rounded-2xl max-md:mt-6 max-md:px-5">
+        <h2 className="mt-5 text-black text-xl font-bold leading-7 whitespace-nowrap">
+          {title}
+        </h2>
+        <p className="text-zinc-900 text-base font-medium leading-6 mt-6">
+          {description}
+        </p>
+        <div className="h-10"></div>
+        <div className="h-10"></div>
+        <a
+          href="#"
+          className="mt-auto text-zinc-600 text-center text-base font-medium leading-6 whitespace-nowrap justify-center items-stretch bg-white mt-7 px-5 py-2.5 rounded-lg border-2 border-solid border-zinc-600 max-md:pr-px"
+        >
+          {buttonName}
+        </a>
+      </div>
+    </div>
+  );
+};
+
 // SmartSavingCard.jsx
 const SmartSavingCard = () => {
   return (
@@ -125,6 +152,7 @@ const Progress = () => {
             className="bg-zinc-600 flex min-h-[35px] w-1/2 flex-col rounded-3xl"
             role="presentation"
             aria-label="Content"
+            style={{ width: `${Math.max(xp % 100, 5)}%` }}
           />
         </section>
       </div>
@@ -208,38 +236,17 @@ export default function UpdatedComponent(props: any) {
 
           <div className="self-stretch mt-10 mb-6 max-md:max-w-full">
             <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
-              <div className="flex flex-col items-stretch w-6/12 max-md:w-full max-md:ml-0">
-                <div className="items-stretch self-stretch bg-white flex grow flex-col w-full mx-auto px-7 py-6 rounded-2xl max-md:mt-6 max-md:px-5">
-                  <h2 className="text-black text-xl font-bold leading-7 whitespace-nowrap">
-                    Financial Tools
-                  </h2>
-                  <p className="text-zinc-900 text-base font-medium leading-6 mt-6">
-                    This is a product description.
-                  </p>
-                  <a
-                    href="#"
-                    className="text-zinc-600 text-center text-base font-medium leading-6 whitespace-nowrap justify-center items-center bg-white mt-7 px-5 py-2.5 rounded-lg border-2 border-solid border-zinc-600"
-                  >
-                    Explore
-                  </a>
-                </div>
-              </div>
-              <div className="flex flex-col items-stretch w-6/12 ml-5 max-md:w-full max-md:ml-0">
-                <div className="items-stretch self-stretch bg-white flex grow flex-col w-full mx-auto px-7 py-6 rounded-2xl max-md:mt-6 max-md:px-5">
-                  <h2 className="text-black text-xl font-bold leading-7 whitespace-nowrap">
-                    Mentor Market
-                  </h2>
-                  <p className="text-zinc-900 text-base font-medium leading-6 mt-6">
-                    This is a product description.
-                  </p>
-                  <a
-                    href="#"
-                    className="text-zinc-600 text-center text-base font-medium leading-6 whitespace-nowrap justify-center items-stretch bg-white mt-7 px-5 py-2.5 rounded-lg border-2 border-solid border-zinc-600 max-md:pr-px"
-                  >
-                    Find a mentor
-                  </a>
-                </div>
-              </div>
+              <OtherToolsCard
+                title="Financial Tools"
+                description="Access financial calculators to practice topics such as budgeting."
+                buttonName="Try now"
+              />
+              {/* temp */}
+              <OtherToolsCard
+                title="Mentor Market"
+                description="Match with a financial assistant to further your future goals."
+                buttonName="Find a mentor"
+              />
             </div>
           </div>
         </section>
