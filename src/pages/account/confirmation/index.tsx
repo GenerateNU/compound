@@ -11,45 +11,13 @@ export default function Home() {
     "Real estate",
   ]);
 
-  async function createUser() {
-    const res = await fetch("/api/users", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        avatar,
-        firstName,
-        lastName,
-        financialInterests,
-        email: "43.dpham@gmail.com",
-        module1Progress: 0,
-        module2Progress: 0,
-        module3Progress: 0,
-      }),
-    });
-
-    if (res.ok) {
-      const temp = await res.json();
-      console.log(temp);
-      console.log("user details updated");
-    } else {
-      console.log("error updating user");
-    }
-  }
+  async function createUser() {}
 
   return (
     <div>
       <main className="bg-white flex flex-col px-5">
         <OnboardingProgress />
         <OnboardingIntro />
-        <button
-          onClick={() => {
-            createUser();
-          }}
-        >
-          test
-        </button>
       </main>
     </div>
   );

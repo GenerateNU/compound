@@ -1,6 +1,6 @@
 export function OnboardingProgress() {
   return (
-    <section className="self-center flex w-full max-w-[1268px] items-start justify-between gap-5 mt-16 max-md:max-w-full max-md:flex-wrap max-md:justify-center max-md:mt-10">
+    <section className="self-center flex w-full max-w-[1268px] items-start justify-between gap-5 mt-8 max-md:max-w-full max-md:flex-wrap max-md:justify-center max-md:mt-10">
       <div className="flex flex-col">
         <div className="text-gray-500 text-center text-base font-semibold leading-[100%] self-center justify-center items-center bg-white w-10 max-w-full px-4 py-3 rounded-lg border-2 border-solid border-zinc-500">
           1
