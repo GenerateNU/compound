@@ -204,7 +204,7 @@ const Progress = () => {
       <div className="justify-between items-stretch content-center gap-y-2 flex-wrap flex gap-5 mt-12 max-md:mt-10">
         <h2 className="text-black text-xl font-bold leading-7">Achievements</h2>
         <a
-          href="#"
+          href="/achievements"
           className="text-zinc-500 text-right text-sm font-semibold leading-5 tracking-wide self-center whitespace-nowrap my-auto"
         >
           View all

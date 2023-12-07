@@ -80,7 +80,7 @@ const Sidebar = () => {
       imageSrc:
         "https://cdn.builder.io/api/v1/image/assets/TEMP/50304736-f900-45c0-8ec4-b8688c0f6fa3?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
       alt: "Curriculum",
-      href: "/curriculum",
+      href: "/postDashboard",
     },
     {
       name: "Achievements",
@@ -89,13 +89,13 @@ const Sidebar = () => {
       alt: "Achievements",
       href: "achievements",
     },
-    {
-      name: "Settings",
-      imageSrc:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/899f0a1f-0364-4caf-b4eb-a94632a014cd?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
-      alt: "More",
-      href: "/more",
-    },
+    // {
+    //   name: "Settings",
+    //   imageSrc:
+    //     "https://cdn.builder.io/api/v1/image/assets/TEMP/899f0a1f-0364-4caf-b4eb-a94632a014cd?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
+    //   alt: "More",
+    //   href: "/postDashboard",
+    // },
   ];
 
   return (
@@ -121,7 +121,7 @@ const Sidebar = () => {
               imageSrc={item.imageSrc}
               alt={item.alt}
               isActive={activeButton === item.name}
-              onClick={setActiveButton}
+              onClick={() => setActiveButton(item.name)}
               href={item.href}
             />
           ))}

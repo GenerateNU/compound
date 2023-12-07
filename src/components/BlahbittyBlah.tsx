@@ -42,9 +42,14 @@ export default function Bruh(props: {
       <div className="text-blue-950 text-sm font-bold leading-5 tracking-wide self-center mt-3 pl-2 pr-2 flex justify-center items-center ml-2 mr-2">
         <div dangerouslySetInnerHTML={{ __html: props.moduleDescription }} />
       </div>
-      <div className="mb-5 text-gray-100 text-center text-xl font-extrabold leading-7 whitespace-nowrap justify-center items-center bg-blue-700 self-center mt-8 px-16 py-4 rounded-lg max-md:px-5">
+      <button
+        onClick={() => {
+          alert("simulating learning...");
+        }}
+        className="mb-5 text-gray-100 text-center text-xl font-extrabold leading-7 whitespace-nowrap justify-center items-center bg-blue-700 self-center mt-8 px-16 py-4 rounded-lg max-md:px-5"
+      >
         Continue
-      </div>
+      </button>
       <div
         className={`absolute bottom-0 transform -translate-x-1/2 ${arrowPosition}`}
       >
