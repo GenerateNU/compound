@@ -5,6 +5,7 @@ import Utils from "../utils";
 import styled, { keyframes } from "styled-components";
 import ModuleRecommendations from "./ModuleReccomendations";
 import ModuleProgressIcon from "./ModuleProgressIcon";
+import Bruh from "./BlahbittyBlah";
 
 // Card.jsx - Base card component
 const Card = ({ title, children }: any) => {
@@ -298,14 +299,48 @@ export default function UpdatedComponent(props: any) {
             <div style={{ height: "100px" }} />
           </div>
           <div className="items-stretch bg-white flex flex-col px-6 py-4 rounded-lg max-md:px-5">
-            <div className="text-blue-950 text-xl font-extrabold leading-7 whitespace-nowrap max-md:max-w-full">
-              Learning Station
+            <div className="text-blue-950 text-xl font-extrabold leading-7 whitespace-nowrap max-md:max-w-full pl-2 pt-2">
+              <h1 className="mb-5 font-bold text-black text-2xl">
+                Learning Station
+              </h1>
             </div>
-            <div className="flex space-x-16">
-              <ModuleProgressIcon percentage={0} />
-              <ModuleProgressIcon percentage={25} />
-              <ModuleProgressIcon percentage={50} />
+            <Bruh></Bruh>
+            <div style={{ height: "50px" }} />
+            <div className="relative flex justify-between">
+              <svg
+                className="absolute top-5 left-20 w-45 h-full z-0"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0,50 C50,10 150,90 200,50"
+                  stroke="blue"
+                  fill="transparent"
+                  strokeWidth="5"
+                />
+              </svg>
+              <svg
+                style={{ left: "342px", transform: "rotate(-5deg)" }}
+                className="absolute top-5 w-45 h-full z-0"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0,50 C50,10 150,90 200,50"
+                  stroke="blue"
+                  fill="transparent"
+                  strokeWidth="5"
+                />
+              </svg>
+              <div className="translate-y-[20px]">
+                <ModuleProgressIcon percentage={0} />
+              </div>
+              <div className="translate-y-[0px]">
+                <ModuleProgressIcon percentage={0} />
+              </div>
+              <div className="translate-y-[-50px]">
+                <ModuleProgressIcon percentage={50} />
+              </div>
             </div>
+            <div style={{ height: "20px" }} />
           </div>
           <ModuleRecommendations />
         </section>
