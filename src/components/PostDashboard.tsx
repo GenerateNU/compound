@@ -256,6 +256,9 @@ export default function UpdatedComponent(props: any) {
   const [hover3, setHover3] = useState(false);
   const [lastHovered, setLastHovered] = useState(2);
 
+  const [rec1, setRec1] = useState("Creating a budget");
+  const [rec2, setRec2] = useState("Credit 101");
+
   const handleMouseEnter = (hoverNumber: number) => {
     setLastHovered(hoverNumber);
     if (hoverNumber === 1) setHover1(true);
@@ -280,6 +283,21 @@ export default function UpdatedComponent(props: any) {
       if (res.ok) {
         const data = await res.json();
         setXp(Utils.computeXpFromProgress(data.progress));
+
+        if (data.financialInterests.length > 1) {
+          const randomIndex1 = Math.floor(
+            Math.random() * data.financialInterests.length
+          );
+          let randomIndex2;
+          do {
+            randomIndex2 = Math.floor(
+              Math.random() * data.financialInterests.length
+            );
+          } while (randomIndex2 === randomIndex1);
+
+          setRec1(data.financialInterests[randomIndex1]);
+          setRec2(data.financialInterests[randomIndex2]);
+        }
       } else {
         console.log("error updating user");
       }
@@ -315,10 +333,16 @@ export default function UpdatedComponent(props: any) {
             <div style={{ height: "100px" }} />
           </div>
           <div className="items-stretch bg-white flex flex-col px-6 py-4 rounded-lg max-md:px-5">
-            <div className="text-blue-950 text-xl font-extrabold leading-7 whitespace-nowrap max-md:max-w-full pl-2 pt-2">
+            <div className="justify-between items-stretch content-center gap-y-2 flex-wrap flex gap-5 mt-2 pl-3">
               <h1 className="mb-5 font-bold text-black text-2xl">
                 Learning Station
               </h1>
+              <a
+                href="/curriculum"
+                className="text-zinc-500 text-right text-sm font-semibold leading-5 tracking-wide self-center whitespace-nowrap my-auto"
+              >
+                View full curriculum
+              </a>
             </div>
             <div
               className=""
@@ -400,7 +424,7 @@ export default function UpdatedComponent(props: any) {
             </div>
             <div style={{ height: "40px" }} />
           </div>
-          <ModuleRecommendations />
+          <ModuleRecommendations rec1={rec1} rec2={rec2} />
         </section>
       </section>
     </main>

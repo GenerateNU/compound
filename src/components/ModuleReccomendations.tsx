@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export default function ModuleReccomendations(props: any) {
+export default function ModuleReccomendations(props: {rec1: string, rec2: string}) {
   return (
     <div className="items-stretch bg-white flex flex-col px-6 py-4 rounded-lg max-md:px-5">
       <div className="text-blue-950 text-xl font-extrabold leading-7 whitespace-nowrap max-md:max-w-full">
@@ -20,13 +20,13 @@ export default function ModuleReccomendations(props: any) {
                 </div>
                 <div className="justify-center items-stretch self-stretch flex grow basis-[0%] flex-col">
                   <div className="text-blue-950 text-xl font-extrabold leading-7 whitespace-nowrap">
-                    Creating a budget
+                    {props.rec1 ?? "Creating a budget"}
                   </div>
                 </div>
               </div>
               <button
                 onClick={() => {
-                  alert("simulating lesson...");
+                  alert("simulating learning...");
                 }}
                 className="text-blue-700 text-center text-base font-bold leading-6 whitespace-nowrap justify-center items-center border border-[color:var(--Blue-Bold,#0057DA)] bg-white mt-8 px-16 py-3 rounded-md border-solid max-md:px-5"
               >
@@ -46,13 +46,13 @@ export default function ModuleReccomendations(props: any) {
                 </div>
                 <div className="justify-center items-stretch self-stretch flex grow basis-[0%] flex-col">
                   <div className="text-blue-950 text-xl font-extrabold leading-7 whitespace-nowrap">
-                    Credit 101
+                    {props.rec1 ?? "Credit 101"}
                   </div>
                 </div>
               </div>
               <button
                 onClick={() => {
-                  alert("simulating lesson...");
+                  alert("simulating learning...");
                 }}
                 className="text-blue-700 text-center text-base font-bold leading-6 whitespace-nowrap justify-center items-center border border-[color:var(--Blue-Bold,#0057DA)] bg-white mt-8 px-16 py-3 rounded-md border-solid max-md:px-5"
               >

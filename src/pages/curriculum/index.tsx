@@ -1,11 +1,7 @@
 export default function Home() {
   return (
     <div>
-      {/* <ProfileSetup />
-      <ProfileComponent />
-      <ProgressComponent /> */}
-      {/* <SkipSection /> */}
-      {/* <Dashboard /> */}
+      <h1>coming soon!</h1>
     </div>
   );
 }

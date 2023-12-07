@@ -7,7 +7,8 @@ export default function Home() {
   const [firstName, setFirstName] = useState("John");
   const [lastName, setLastName] = useState("Smith");
   const [financialInterests, setFinancialInterests] = useState([
-    "creating a personal budget",
+    "Creating a budget",
+    "Real estate",
   ]);
 
   async function createUser() {
