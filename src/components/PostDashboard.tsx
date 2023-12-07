@@ -50,6 +50,28 @@ const ProgressMessage = ({ xp }: any) => {
   );
 };
 
+const TotalXP = ({ xp }: any) => {
+  return (
+    <div
+      style={{ backgroundColor: "var(--color-red)" }}
+      className="items-stretch content-center flex-wrap bg-zinc-300 self-stretch flex basis-[0%] flex-col p-2 rounded-2xl min-w-fit"
+    >
+      <div className="justify-between items-stretch flex gap-2 shrink-0">
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/d524a991-3ace-4f4c-98ab-ec2e6f8d1f7f?apiKey=af7b8d767d8745b3a433de5edc8cf82c&"
+          className="aspect-square object-contain object-center w-5 fill-zinc-600 overflow-hidden shrink-0 max-w-full"
+          alt="XP Icon"
+        />
+        <div className="text-white text-sm font-semibold leading-5 tracking-wide grow whitespace-nowrap flex-shrink">
+          {" "}
+          {xp} XP
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const OtherToolsCard = ({ title, description, buttonName }: any) => {
   return (
     <div className="relative flex flex-col items-stretch w-fullmax-md:w-full max-md:ml-0">
@@ -159,19 +181,7 @@ const Progress = () => {
           </div>
           <ProgressMessage xp={xp} />
         </div>
-        <div className="items-stretch content-center flex-wrap bg-zinc-300 self-stretch flex basis-[0%] flex-col p-2 rounded-2xl min-w-fit">
-          <div className="justify-between items-stretch flex gap-2 shrink-0">
-            <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/d524a991-3ace-4f4c-98ab-ec2e6f8d1f7f?apiKey=af7b8d767d8745b3a433de5edc8cf82c&"
-              className="aspect-square object-contain object-center w-5 fill-zinc-600 overflow-hidden shrink-0 max-w-full"
-              alt="XP Icon"
-            />
-            <div className="text-zinc-600 text-sm font-semibold leading-5 tracking-wide grow whitespace-nowrap flex-shrink">
-              {xp} XP
-            </div>
-          </div>
-        </div>
+        <TotalXP xp={xp} />
       </div>
       <ProgressBar xp={xp} />
       <div className="justify-between items-stretch content-center gap-y-2 flex-wrap flex gap-5 mt-12 max-md:mt-10">
