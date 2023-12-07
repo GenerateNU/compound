@@ -144,7 +144,7 @@ const Welcome = (props: { firstName: string }) => {
       <h1 className="text-2xl font-bold text-blue-600">
         Good morning, {props.firstName ?? ""}!
       </h1>
-      <h2 className="text-lg mt-2">
+      <h2 className="text-lg font-semibold mt-2">
         Begin your week preparing for your financial future.
       </h2>
     </div>
@@ -449,7 +449,7 @@ export default function UpdatedComponent(props: any) {
                 <ModuleProgressIcon percentage={module3Progress} />
               </div>
             </div>
-            <div style={{ height: "20px" }} />
+            <div style={{ height: "40px" }} />
           </div>
           <ModuleRecommendations rec1={rec1} rec2={rec2} />
         </section>
