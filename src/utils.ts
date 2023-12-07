@@ -5,6 +5,27 @@ import { getServerSession, Session } from "next-auth";
 import { User } from "@prisma/client";
 
 export default class Utils {
+  public static computeXpFromProgress(progress: boolean[]) {
+    let xp = 0;
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 4; j++) {
+        // lessons
+        if (j === 0 || j === 1 || j === 2) {
+          if (progress[i * 4 + j] === true) {
+            xp += 30;
+          }
+        } else {
+          // exam
+          if (progress[i * 4 + j] === true) {
+            xp += 10;
+          }
+        }
+      }
+    }
+
+    return xp;
+  }
+
   public static decodeToken(token: string) {
     return jwt.verify(
       token,

@@ -1,6 +1,7 @@
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "./SideBar";
+import Utils from "../utils";
 
 // Card.jsx - Base card component
 const Card = ({ title, children }: any) => {
@@ -66,6 +67,24 @@ const Welcome = () => {
 };
 
 const Progress = () => {
+  const [xp, setXp] = useState(0);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await fetch(
+        `/api/users?email=${encodeURIComponent(
+          localStorage.getItem("email") ?? ""
+        )}`,
+        {}
+      );
+
+      console.log(res);
+      alert();
+
+      fetchUser();
+    };
+  }, []);
+
   return (
     <div className="items-stretch self-stretch bg-white flex flex-col mt-8 pt-5 pb-6 px-8 rounded-2xl max-md:max-w-full max-md:px-5">
       <h1 className="mb-5 font-bold text-black text-2xl">Progress</h1>
@@ -79,11 +98,11 @@ const Progress = () => {
               alt="Level Icon"
             />
             <div className="text-blue-500 text-xl font-bold leading-7 grow whitespace-nowrap">
-              Level 3
+              Level {xp / 100 + 1}
             </div>
           </div>
           <div className="text-zinc-500 text-sm font-semibold leading-5 tracking-wide self-center grow whitespace-nowrap my-auto">
-            100 XP to level up
+            {100 - (xp % 100)} xp to next level
           </div>
         </div>
         <div className="items-stretch content-center flex-wrap bg-zinc-300 self-stretch flex basis-[0%] flex-col p-2 rounded-2xl min-w-fit">
@@ -95,7 +114,7 @@ const Progress = () => {
               alt="XP Icon"
             />
             <div className="text-zinc-600 text-sm font-semibold leading-5 tracking-wide grow whitespace-nowrap flex-shrink">
-              225 XP
+              {xp} XP
             </div>
           </div>
         </div>
@@ -158,6 +177,27 @@ const Progress = () => {
 };
 
 export default function UpdatedComponent(props: any) {
+  const [xp, setXp] = useState(0);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await fetch(
+        `/api/users?email=${encodeURIComponent(
+          localStorage.getItem("email") ?? ""
+        )}`,
+        {}
+      );
+
+      if (res.ok) {
+        const data = await res.json();
+        setXp(Utils.computeXpFromProgress(data.progress));
+      } else {
+        console.log("error updating user");
+      }
+    };
+    fetchUser();
+  }, []);
+
   return (
     <main className="bg-white">
       <section className="flex max-md:flex-col max-md:items-stretch max-md:gap-0">
