@@ -352,12 +352,14 @@ export default function UpdatedComponent(props: any) {
               <h1 className="mb-5 font-bold text-black text-2xl">
                 Learning Station
               </h1>
-              <a
-                href="/curriculum"
+              <button
+                onClick={() => {
+                  alert("Coming soon!");
+                }}
                 className="text-zinc-500 text-right text-sm font-semibold leading-5 tracking-wide self-center whitespace-nowrap my-auto"
               >
                 View full curriculum
-              </a>
+              </button>
             </div>
             <div
               className=""

@@ -18,80 +18,88 @@ const modules: ModuleData[] = [
   {
     title: "Completed Module 1",
     status: "2/3",
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets/TEMP/0c183228-fa44-4dc8-b027-8462831d3a81?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets/TEMP/0c183228-fa44-4dc8-b027-8462831d3a81?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
   },
   {
     title: "Completed Module 2",
     status: "1/3",
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets/TEMP/0c183228-fa44-4dc8-b027-8462831d3a81?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets/TEMP/0c183228-fa44-4dc8-b027-8462831d3a81?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
   },
   {
     title: "Completed Module 3",
     status: "0/3",
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets/TEMP/0c183228-fa44-4dc8-b027-8462831d3a81?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets/TEMP/0c183228-fa44-4dc8-b027-8462831d3a81?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
   },
   {
     title: "Completed Module 4",
     status: "3/3",
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets/TEMP/0c183228-fa44-4dc8-b027-8462831d3a81?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets/TEMP/0c183228-fa44-4dc8-b027-8462831d3a81?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
   },
   {
     title: "Completed Module 5",
     status: "0/3",
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets/TEMP/0c183228-fa44-4dc8-b027-8462831d3a81?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets/TEMP/0c183228-fa44-4dc8-b027-8462831d3a81?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
   },
   {
     title: "Completed Module 6",
     status: "0/3",
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets/TEMP/0c183228-fa44-4dc8-b027-8462831d3a81?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets/TEMP/0c183228-fa44-4dc8-b027-8462831d3a81?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
   },
 ];
 
 const cards: CardData[] = [
   {
     title: "Card Title 1",
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets/TEMP/9b1ec7d6-551e-4f09-acd6-a7b5f1b317a0?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets/TEMP/9b1ec7d6-551e-4f09-acd6-a7b5f1b317a0?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
     message: "You completed your first lesson.",
-    status: "Completed"
+    status: "Completed",
   },
   {
     title: "Card Title 1",
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets/TEMP/9b1ec7d6-551e-4f09-acd6-a7b5f1b317a0?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets/TEMP/9b1ec7d6-551e-4f09-acd6-a7b5f1b317a0?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
     message: "You completed your first lesson.",
-    status: "Completed"
+    status: "Completed",
   },
   {
     title: "Card Title 1",
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets/TEMP/9b1ec7d6-551e-4f09-acd6-a7b5f1b317a0?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets/TEMP/9b1ec7d6-551e-4f09-acd6-a7b5f1b317a0?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
     message: "You completed your first lesson.",
-    status: "Completed"
+    status: "Completed",
   },
   {
     title: "Card Title 1",
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets/TEMP/9b1ec7d6-551e-4f09-acd6-a7b5f1b317a0?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets/TEMP/9b1ec7d6-551e-4f09-acd6-a7b5f1b317a0?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
     message: "You completed your first lesson.",
-    status: "Completed"
+    status: "Completed",
   },
   {
     title: "Card Title 1",
-    imageUrl: "https://cdn.builder.io/api/v1/image/assets/TEMP/9b1ec7d6-551e-4f09-acd6-a7b5f1b317a0?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
+    imageUrl:
+      "https://cdn.builder.io/api/v1/image/assets/TEMP/9b1ec7d6-551e-4f09-acd6-a7b5f1b317a0?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
     message: "You completed your first lesson.",
-    status: "Completed"
+    status: "Completed",
   },
 ];
 
-
 const Module: React.FC<{ module: ModuleData }> = ({ module }) => {
-
   const widthMap = {
     "0/3": "w-0",
     "1/3": "w-1/3",
     "2/3": "w-2/3",
-    "3/3": "w-full"
-  }
+    "3/3": "w-full",
+  };
 
   return (
-    
     <div className="px-8 max-md:max-w-full mt-4 max-md:mt-10">
       <section className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
         <section className="flex flex-col items-stretch w-[28%] max-md:w-full max-md:ml-0">
@@ -111,7 +119,10 @@ const Module: React.FC<{ module: ModuleData }> = ({ module }) => {
             </p>
             <div className="bg-neutral-400 flex shrink-0 h-[35px] flex-col mt-4 rounded-3xl">
               <div
-                className={"bg-zinc-600 flex min-h-[35px] flex-col rounded-3xl " + widthMap[module.status]}
+                className={
+                  "bg-zinc-600 flex min-h-[35px] flex-col rounded-3xl " +
+                  widthMap[module.status]
+                }
                 role="presentation"
                 aria-label="Content"
               />
@@ -147,17 +158,16 @@ const Card: React.FC<{ card: CardData }> = ({ card }) => {
 const CardsList: React.FC = () => {
   return (
     <div className="max-h-[28rem] my-4 px-4 grid grid-cols-2 gap-4 overflow-y-scroll custom-scrollbar">
-
       {cards.map((card, index) => (
         <Card key={index} card={card} />
       ))}
     </div>
-  )
-}
+  );
+};
 const CardBadges: React.FC = () => {
   return (
     <section className=" flex flex-col items-stretch w-[42%] ml-5 max-md:w-full max-md:ml-0">
-      <div className= "flex grow flex-col items-stretch w-full mx-auto pt-0.5 pb-5 rounded-3xl bg-zinc-100 border-[19px] border-solid border-zinc-100 max-md:max-w-full max-md:mt-10">
+      <div className="flex grow flex-col items-stretch w-full mx-auto pt-0.5 pb-5 rounded-3xl bg-zinc-100 border-[19px] border-solid border-zinc-100 max-md:max-w-full max-md:mt-10">
         <h2 className="text-black text-xl font-bold px-5 pt-4 pb-6 max-md:max-w-full max-md:pl-1">
           One Hit Wonders
         </h2>
@@ -172,18 +182,18 @@ const CardBadges: React.FC = () => {
 const ModuleBadges: React.FC = () => {
   return (
     <section className="flex flex-col items-stretch w-[58%] max-md:w-full max-md:ml-0">
-    <div className=" flex grow flex-col items-stretch w-full mx-auto pt-0.5 pb-5 rounded-3xl bg-zinc-100 border-[19px] border-solid border-zinc-100 max-md:max-w-full max-md:mt-10">
-      <h2 className="text-black text-xl font-bold px-5 pt-4 pb-6 max-md:max-w-full max-md:pl-1">
-        Module Badges
-      </h2>
+      <div className=" flex grow flex-col items-stretch w-full mx-auto pt-0.5 pb-5 rounded-3xl bg-zinc-100 border-[19px] border-solid border-zinc-100 max-md:max-w-full max-md:mt-10">
+        <h2 className="text-black text-xl font-bold px-5 pt-4 pb-6 max-md:max-w-full max-md:pl-1">
+          Module Badges
+        </h2>
 
-      <div className="bg-white flex px-2 max-md:max-w-full ">
+        <div className="bg-white flex px-2 max-md:max-w-full ">
           <ModulesList />
+        </div>
       </div>
-    </div>
-  </section>
-  )
-}
+    </section>
+  );
+};
 
 const ModulesList: React.FC = () => {
   return (
@@ -219,6 +229,5 @@ export default function AchievementsComponent(props: any) {
         </section>
       </section>
     </main>
-
   );
 }

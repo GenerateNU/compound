@@ -44,8 +44,8 @@ function LandingPage(props: any) {
           onClick={() => router.push("/account")}
           className="justify-center items-stretch bg-gray-100 self-stretch flex basis-[0%] flex-col rounded-lg"
         >
-          <div className="text-blue-700 text-center text-xl font-extrabold leading-7 whitespace-nowrap items-stretch bg-gray-200 justify-center px-12 py-3.5 max-md:px-5 rounded">
-            Log in
+          <div className="text-blue-700 text-center text-xl font-extrabold leading-7 whitespace-nowrap items-stretch bg-gray-200 justify-center px-12 py-3.5 max-md:px-5 rounded-lg">
+            Log in / Sign up
           </div>
         </button>
       </div>

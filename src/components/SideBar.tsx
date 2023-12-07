@@ -127,8 +127,11 @@ const Sidebar = (props: { name: string; avatarIndex: number }) => {
               imageSrc={item.imageSrc}
               alt={item.alt}
               isActive={activeButton === item.name}
-              onClick={() => setActiveButton(item.name)}
-              href={item.href}
+              onClick={() => {
+                !(item.name === "Dashboard")
+                  ? alert("Coming soon!")
+                  : setActiveButton(item.name);
+              }}
             />
           ))}
         </div>
