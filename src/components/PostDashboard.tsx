@@ -150,26 +150,7 @@ const Welcome = (props: { firstName: string }) => {
   );
 };
 
-const Progress = () => {
-  const [xp, setXp] = useState(0);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      const res = await fetch(
-        `/api/users?email=${encodeURIComponent(
-          localStorage.getItem("email") ?? ""
-        )}`,
-        {}
-      );
-
-      const body = await res.json();
-
-      setXp(Utils.computeXpFromProgress(body.progress));
-    };
-
-    fetchUser();
-  }, []);
-
+const Progress = (props: { xp: number }) => {
   return (
     <div className="items-stretch self-stretch bg-white flex flex-col mt-8 pt-5 pb-6 px-8 rounded-2xl max-md:max-w-full max-md:px-5">
       <h1 className="mb-5 font-bold text-black text-2xl">Progress</h1>
@@ -183,14 +164,14 @@ const Progress = () => {
               alt="Level Icon"
             />
             <div className="text-blue-500 text-xl font-bold leading-7 grow whitespace-nowrap">
-              Level {Math.floor(xp / 100) + 1}
+              Level {Math.floor(props.xp / 100) + 1}
             </div>
           </div>
-          <ProgressMessage xp={xp} />
+          <ProgressMessage xp={props.xp} />
         </div>
-        <TotalXP xp={xp} />
+        <TotalXP xp={props.xp} />
       </div>
-      <ProgressBar xp={xp} />
+      <ProgressBar xp={props.xp} />
       <div className="justify-between items-stretch content-center gap-y-2 flex-wrap flex gap-5 mt-12 max-md:mt-10">
         <h2 className="text-black text-xl font-bold leading-7">Achievements</h2>
         <a
@@ -266,6 +247,33 @@ export default function UpdatedComponent(props: any) {
     else if (hoverNumber === 2) setHover2(false);
     else if (hoverNumber === 3) setHover3(false);
   };
+
+  const [module1Progress, setModule1Progress] = useState(0);
+  const [module2Progress, setModule2Progress] = useState(0);
+  const [module3Progress, setModule3Progress] = useState(0);
+
+  const module1Lessons = [
+    "Understanding Credit Scores",
+    "Building and Improving Credit",
+    "Dealing with Credit Card Debt",
+    "Module Exam",
+    "",
+  ];
+  const module2Lessons = [
+    "Creating a Personal Budget",
+    "Effective Expense Tracking",
+    "Adapting Budgets for Life Changes",
+    "Module Exam",
+    "",
+  ];
+  const module3Lessons = [
+    "Types of Investments",
+    "How to Think About Risk",
+    "Long term vs. Short term Investing",
+    "Module Exam",
+    "",
+  ];
+
   useEffect(() => {
     const fetchUser = async () => {
       const res = await fetch(
@@ -277,7 +285,11 @@ export default function UpdatedComponent(props: any) {
 
       if (res.ok) {
         const data = await res.json();
-        setXp(Utils.computeXpFromProgress(data.progress));
+
+        // set xp based on module progress
+        setXp(
+          data.module1Progress + data.module2Progress + data.module3Progress
+        );
 
         if (data.financialInterests.length > 1) {
           const randomIndex1 = Math.floor(
@@ -298,6 +310,10 @@ export default function UpdatedComponent(props: any) {
         setLastName(data.lastName);
 
         setAvatarIndex(data.avatar);
+
+        setModule1Progress(data.module1Progress);
+        setModule2Progress(data.module2Progress);
+        setModule3Progress(data.module3Progress);
       } else {
         console.log("error updating user");
       }
@@ -305,13 +321,40 @@ export default function UpdatedComponent(props: any) {
     fetchUser();
   }, []);
 
+  async function moveToNextLesson(moduleNumber: number) {
+    const body = {
+      email: localStorage.getItem("email"),
+      module1Progress: module1Progress + (moduleNumber === 1 ? 25 : 0),
+      module2Progress: module2Progress + (moduleNumber === 2 ? 25 : 0),
+      module3Progress: module3Progress + (moduleNumber === 3 ? 25 : 0),
+    };
+
+    const res = await fetch("/api/users", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+
+    const temp = await res.json();
+
+    setModule1Progress(temp.module1Progress);
+    setModule2Progress(temp.module2Progress);
+    setModule3Progress(temp.module3Progress);
+
+    alert("simulating learning...");
+
+    window.location.reload();
+  }
+
   return (
     <main className="bg-white">
       <section className="flex max-md:flex-col max-md:items-stretch max-md:gap-0">
         <Sidebar name={firstName + " " + lastName} avatarIndex={avatarIndex} />
         <section className="bg-zinc-100 flex flex-col px-6 rounded-3xl max-md:px-5 pl-10">
           <Welcome firstName={firstName}></Welcome>
-          <Progress></Progress>
+          <Progress xp={xp} />
 
           <div className="self-stretch mt-10 mb-6 max-md:max-w-full">
             <div className="gap-5 flex max-md:flex-col max-md:items-stretch max-md:gap-0">
@@ -355,6 +398,10 @@ export default function UpdatedComponent(props: any) {
                   offsetHorizontal={-150}
                   offsetVertical={0}
                   arrow="left"
+                  nextLesson={module1Lessons[module1Progress / 25]}
+                  handleProgress={() => {
+                    moveToNextLesson(1);
+                  }}
                 />
               ) : lastHovered === 2 ? (
                 <Bruh
@@ -363,6 +410,10 @@ export default function UpdatedComponent(props: any) {
                   offsetHorizontal={0}
                   offsetVertical={0}
                   arrow="middle"
+                  nextLesson={module2Lessons[module2Progress / 25]}
+                  handleProgress={() => {
+                    moveToNextLesson(2);
+                  }}
                 />
               ) : lastHovered === 3 ? (
                 <Bruh
@@ -371,6 +422,10 @@ export default function UpdatedComponent(props: any) {
                   offsetHorizontal={150}
                   offsetVertical={-50}
                   arrow="right"
+                  nextLesson={module3Lessons[module3Progress / 25]}
+                  handleProgress={() => {
+                    moveToNextLesson(3);
+                  }}
                 />
               ) : (
                 <div style={{ height: "245px" }} />
@@ -405,24 +460,24 @@ export default function UpdatedComponent(props: any) {
                 onMouseEnter={() => handleMouseEnter(1)}
                 onMouseLeave={() => handleMouseLeave(1)}
               >
-                <ModuleProgressIcon percentage={0} />
+                <ModuleProgressIcon percentage={module1Progress} />
               </div>
               <div
                 className="translate-y-[0px]"
                 onMouseEnter={() => handleMouseEnter(2)}
                 onMouseLeave={() => handleMouseLeave(2)}
               >
-                <ModuleProgressIcon percentage={0} />
+                <ModuleProgressIcon percentage={module2Progress} />
               </div>
               <div
                 className="translate-y-[-50px]"
                 onMouseEnter={() => handleMouseEnter(3)}
                 onMouseLeave={() => handleMouseLeave(3)}
               >
-                <ModuleProgressIcon percentage={50} />
+                <ModuleProgressIcon percentage={module3Progress} />
               </div>
             </div>
-            <div style={{ height: "40px" }} />
+            <div style={{ height: "20px" }} />
           </div>
           <ModuleRecommendations rec1={rec1} rec2={rec2} />
         </section>

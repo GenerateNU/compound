@@ -23,10 +23,15 @@ export default function Home() {
         lastName,
         financialInterests,
         email: "43.dpham@gmail.com",
+        module1Progress: 0,
+        module2Progress: 0,
+        module3Progress: 0,
       }),
     });
 
     if (res.ok) {
+      const temp = await res.json();
+      console.log(temp);
       console.log("user details updated");
     } else {
       console.log("error updating user");

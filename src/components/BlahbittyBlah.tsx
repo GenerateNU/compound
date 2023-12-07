@@ -6,6 +6,8 @@ export default function Bruh(props: {
   offsetVertical: number;
   offsetHorizontal: number;
   arrow: string;
+  nextLesson: string;
+  handleProgress: () => void;
 }) {
   let arrowPosition = "";
 
@@ -39,17 +41,24 @@ export default function Bruh(props: {
       <div className="text-blue-700 text-xl font-extrabold leading-7 self-center whitespace-nowrap mt-4">
         {props.moduleName}
       </div>
-      <div className="text-blue-950 text-sm font-bold leading-5 tracking-wide self-center mt-3 pl-2 pr-2 flex justify-center items-center ml-2 mr-2">
+      <div className="text-blue-950 text-sm font-bold leading-5 tracking-wide self-center pl-2 pr-2 flex justify-center items-center ml-2 mr-2">
         <div dangerouslySetInnerHTML={{ __html: props.moduleDescription }} />
+      </div>
+      <div className="mt-2 text-blue-950 text-sm leading-5 tracking-wide self-center pl-2 pr-2 flex justify-center items-center ml-2 mr-2 mt-1">
+        {props.nextLesson ? `Next up: ${props.nextLesson}` : "."}
       </div>
       <button
         onClick={() => {
-          alert("simulating learning...");
+          props.handleProgress();
         }}
-        className="mb-5 text-gray-100 text-center text-xl font-extrabold leading-7 whitespace-nowrap justify-center items-center bg-blue-700 self-center mt-8 px-16 py-4 rounded-lg max-md:px-5"
+        disabled={!props.nextLesson}
+        className={`mb-5 text-gray-100 text-center text-xl font-extrabold leading-7 whitespace-nowrap justify-center items-center self-center mt-4 px-16 py-4 rounded-lg max-md:px-5 ${
+          props.nextLesson ? "bg-blue-700" : "bg-gray-700"
+        }`}
       >
-        Continue
+        {props.nextLesson ? "Continue" : "Completed"}
       </button>
+
       <div
         className={`absolute bottom-0 transform -translate-x-1/2 ${arrowPosition}`}
       >
