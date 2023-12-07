@@ -2,6 +2,10 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import Sidebar from "./SideBar";
 import Utils from "../utils";
+import styled, { keyframes } from "styled-components";
+import ModuleRecommendations from "./ModuleReccomendations";
+import ModuleProgressIcon from "./ModuleProgressIcon";
+import Bruh from "./BlahbittyBlah";
 
 // Card.jsx - Base card component
 const Card = ({ title, children }: any) => {
@@ -22,20 +26,30 @@ const Card = ({ title, children }: any) => {
 };
 
 const ProgressBar = ({ xp }: any) => {
+  const loading = keyframes`
+    0% {
+      width: 0;
+    }
+    100% {
+      width: ${Math.max(xp % 100, 5)}%;
+    }
+  `;
+
+  const LoadingDiv = styled.div`
+    animation: ${loading} 5s ease-in-out;
+    background-color: var(--color-red);
+  `;
+
   return (
     <div className="items-stretch self-stretch flex flex-col pt-1">
       <section
         style={{ backgroundColor: "var(--color-light-red)" }}
         className="bg-neutral-400 flex w-full flex-col items-stretch rounded-3xl"
       >
-        <div
+        <LoadingDiv
           className="flex min-h-[35px] w-1/2 flex-col rounded-3xl"
           role="presentation"
           aria-label="Content"
-          style={{
-            width: `${Math.max(xp % 100, 5)}%`,
-            backgroundColor: "var(--color-red)",
-          }}
         />
       </section>
     </div>
@@ -74,7 +88,10 @@ const TotalXP = ({ xp }: any) => {
 
 const OtherToolsCard = ({ title, description, buttonName }: any) => {
   return (
-    <div className="relative flex flex-col items-stretch w-fullmax-md:w-full max-md:ml-0">
+    <div
+      className="relative flex flex-col items-stretch w-fullmax-md:w-full max-md:ml-0"
+      style={{ width: "300px" }}
+    >
       <div
         className="w-full absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-10 rounded-t-xl"
         style={{ backgroundColor: "var(--color-mint)" }}
@@ -269,7 +286,6 @@ export default function UpdatedComponent(props: any) {
                 description="Access financial calculators to practice topics such as budgeting."
                 buttonName="Try now"
               />
-              {/* temp */}
               <OtherToolsCard
                 title="Mentor Market"
                 description="Match with a financial assistant to further your future goals."
@@ -278,37 +294,56 @@ export default function UpdatedComponent(props: any) {
             </div>
           </div>
         </section>
-        <main className="bg-zinc-100 flex flex-col items-stretch rounded-3xl border-solid border-zinc-100">
-          <section className="items-stretch bg-zinc-100 flex flex-col rounded-2xl max-md:max-w-full max-md:mr-1.5">
-            <section className="items-stretch bg-zinc-100 flex flex-col px-5 py-7 rounded-2xl max-md:max-w-full">
-              <div className="justify-between items-stretch flex gap-5 mr-2.5 max-md:max-w-full max-md:flex-wrap">
-                <h1 className="text-black text-2xl font-bold leading-9">
-                  Jump back in
-                </h1>
-                <a
-                  href="#"
-                  className="text-zinc-500 text-right text-sm font-semibold leading-5 tracking-wide self-center whitespace-nowrap my-auto"
-                >
-                  View full curriculum
-                </a>
-              </div>
-            </section>
-          </section>
-          <section className="flex w-full flex-col items-stretch mt-10 mb-6 px-5 max-md:max-w-full">
-            <img
-              loading="lazy"
-              srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/de17ae0b-b331-4cd6-97f8-df0008be520a?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/de17ae0b-b331-4cd6-97f8-df0008be520a?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/de17ae0b-b331-4cd6-97f8-df0008be520a?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/de17ae0b-b331-4cd6-97f8-df0008be520a?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/de17ae0b-b331-4cd6-97f8-df0008be520a?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/de17ae0b-b331-4cd6-97f8-df0008be520a?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/de17ae0b-b331-4cd6-97f8-df0008be520a?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/de17ae0b-b331-4cd6-97f8-df0008be520a?apiKey=af7b8d767d8745b3a433de5edc8cf82c&"
-              className="aspect-[1.71] object-contain object-center w-full overflow-hidden rounded-2xl max-md:max-w-full"
-            />
-            <h2 className="text-neutral-500 text-xl font-bold leading-7 whitespace-nowrap mt-8 pb-5 max-md:max-w-full">
-              Modules you may be interested in...
-            </h2>
-            <div className="flex justify-center items-center ">
-              <SmartSavingCard />
-              <SpendingCard />
+        <section className="bg-zinc-100 flex flex-col px-10 rounded-3xl w-full">
+          <div className="mt-10 rounded-xl text-blue-500 p-4">
+            <div style={{ height: "100px" }} />
+          </div>
+          <div className="items-stretch bg-white flex flex-col px-6 py-4 rounded-lg max-md:px-5">
+            <div className="text-blue-950 text-xl font-extrabold leading-7 whitespace-nowrap max-md:max-w-full pl-2 pt-2">
+              <h1 className="mb-5 font-bold text-black text-2xl">
+                Learning Station
+              </h1>
             </div>
-          </section>
-        </main>
+            <Bruh></Bruh>
+            <div style={{ height: "50px" }} />
+            <div className="relative flex justify-between">
+              <svg
+                className="absolute top-5 left-20 w-45 h-full z-0"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0,50 C50,10 150,90 200,50"
+                  stroke="blue"
+                  fill="transparent"
+                  strokeWidth="5"
+                />
+              </svg>
+              <svg
+                style={{ left: "342px", transform: "rotate(-5deg)" }}
+                className="absolute top-5 w-45 h-full z-0"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0,50 C50,10 150,90 200,50"
+                  stroke="blue"
+                  fill="transparent"
+                  strokeWidth="5"
+                />
+              </svg>
+              <div className="translate-y-[20px]">
+                <ModuleProgressIcon percentage={0} />
+              </div>
+              <div className="translate-y-[0px]">
+                <ModuleProgressIcon percentage={0} />
+              </div>
+              <div className="translate-y-[-50px]">
+                <ModuleProgressIcon percentage={50} />
+              </div>
+            </div>
+            <div style={{ height: "20px" }} />
+          </div>
+          <ModuleRecommendations />
+        </section>
       </section>
     </main>
   );
