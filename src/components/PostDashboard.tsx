@@ -251,7 +251,23 @@ const Progress = () => {
 
 export default function UpdatedComponent(props: any) {
   const [xp, setXp] = useState(0);
+  const [hover1, setHover1] = useState(false);
+  const [hover2, setHover2] = useState(false);
+  const [hover3, setHover3] = useState(false);
+  const [lastHovered, setLastHovered] = useState(2);
 
+  const handleMouseEnter = (hoverNumber: number) => {
+    setLastHovered(hoverNumber);
+    if (hoverNumber === 1) setHover1(true);
+    else if (hoverNumber === 2) setHover2(true);
+    else if (hoverNumber === 3) setHover3(true);
+  };
+
+  const handleMouseLeave = (hoverNumber: number) => {
+    if (hoverNumber === 1) setHover1(false);
+    else if (hoverNumber === 2) setHover2(false);
+    else if (hoverNumber === 3) setHover3(false);
+  };
   useEffect(() => {
     const fetchUser = async () => {
       const res = await fetch(
@@ -304,8 +320,38 @@ export default function UpdatedComponent(props: any) {
                 Learning Station
               </h1>
             </div>
-            <Bruh></Bruh>
-            <div style={{ height: "50px" }} />
+            <div
+              className=""
+              style={{ display: "flex", justifyContent: "center" }}
+            >
+              {lastHovered === 1 ? (
+                <Bruh
+                  moduleName="Module 1: Credit"
+                  moduleDescription="All about borrowing."
+                  offsetHorizontal={-150}
+                  offsetVertical={0}
+                  arrow="left"
+                />
+              ) : lastHovered === 2 ? (
+                <Bruh
+                  moduleName="Module 2: Budgeting"
+                  moduleDescription="All about managing expenses."
+                  offsetHorizontal={0}
+                  offsetVertical={0}
+                  arrow="middle"
+                />
+              ) : lastHovered === 3 ? (
+                <Bruh
+                  moduleName="Module 3: Investing"
+                  moduleDescription="All about growing your money."
+                  offsetHorizontal={150}
+                  offsetVertical={-50}
+                  arrow="right"
+                />
+              ) : (
+                <div style={{ height: "245px" }} />
+              )}
+            </div>
             <div className="relative flex justify-between">
               <svg
                 className="absolute top-5 left-20 w-45 h-full z-0"
@@ -330,17 +376,29 @@ export default function UpdatedComponent(props: any) {
                   strokeWidth="5"
                 />
               </svg>
-              <div className="translate-y-[20px]">
+              <div
+                className="translate-y-[20px]"
+                onMouseEnter={() => handleMouseEnter(1)}
+                onMouseLeave={() => handleMouseLeave(1)}
+              >
                 <ModuleProgressIcon percentage={0} />
               </div>
-              <div className="translate-y-[0px]">
+              <div
+                className="translate-y-[0px]"
+                onMouseEnter={() => handleMouseEnter(2)}
+                onMouseLeave={() => handleMouseLeave(2)}
+              >
                 <ModuleProgressIcon percentage={0} />
               </div>
-              <div className="translate-y-[-50px]">
+              <div
+                className="translate-y-[-50px]"
+                onMouseEnter={() => handleMouseEnter(3)}
+                onMouseLeave={() => handleMouseLeave(3)}
+              >
                 <ModuleProgressIcon percentage={50} />
               </div>
             </div>
-            <div style={{ height: "20px" }} />
+            <div style={{ height: "40px" }} />
           </div>
           <ModuleRecommendations />
         </section>
