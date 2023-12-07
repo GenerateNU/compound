@@ -4,6 +4,7 @@ import Sidebar from "./SideBar";
 import Utils from "../utils";
 import styled, { keyframes } from "styled-components";
 import ModuleRecommendations from "./ModuleReccomendations";
+import ModuleProgressIcon from "./ModuleProgressIcon";
 
 // Card.jsx - Base card component
 const Card = ({ title, children }: any) => {
@@ -292,23 +293,21 @@ export default function UpdatedComponent(props: any) {
             </div>
           </div>
         </section>
-        <section className="bg-zinc-100 flex flex-col px-6 rounded-3xl max-md:px-5 pl-10">
+        <section className="bg-zinc-100 flex flex-col px-10 rounded-3xl w-full">
           <div className="mt-10 rounded-xl text-blue-500 p-4">
-            <div style={{ height: "70px" }} />
+            <div style={{ height: "100px" }} />
           </div>
-          <img
-            loading="lazy"
-            srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/de17ae0b-b331-4cd6-97f8-df0008be520a?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/de17ae0b-b331-4cd6-97f8-df0008be520a?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/de17ae0b-b331-4cd6-97f8-df0008be520a?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/de17ae0b-b331-4cd6-97f8-df0008be520a?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/de17ae0b-b331-4cd6-97f8-df0008be520a?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/de17ae0b-b331-4cd6-97f8-df0008be520a?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/de17ae0b-b331-4cd6-97f8-df0008be520a?apiKey=af7b8d767d8745b3a433de5edc8cf82c&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/de17ae0b-b331-4cd6-97f8-df0008be520a?apiKey=af7b8d767d8745b3a433de5edc8cf82c&"
-            className="mt-8 aspect-[1.71] object-contain object-center w-full overflow-hidden rounded-2xl max-md:max-w-full"
-          />
-          <h2 className="text-neutral-500 text-xl font-bold leading-7 whitespace-nowrap mt-8 pb-5 max-md:max-w-full">
-            Modules you may be interested in...
-          </h2>
+          <div className="items-stretch bg-white flex flex-col px-6 py-4 rounded-lg max-md:px-5">
+            <div className="text-blue-950 text-xl font-extrabold leading-7 whitespace-nowrap max-md:max-w-full">
+              Learning Station
+            </div>
+            <div className="flex space-x-16">
+              <ModuleProgressIcon percentage={0} />
+              <ModuleProgressIcon percentage={25} />
+              <ModuleProgressIcon percentage={50} />
+            </div>
+          </div>
           <ModuleRecommendations />
-          {/* <div className="flex justify-center items-center ">
-            <SmartSavingCard />
-            <SpendingCard />
-          </div> */}
         </section>
       </section>
     </main>

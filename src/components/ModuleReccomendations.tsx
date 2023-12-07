@@ -24,7 +24,12 @@ export default function ModuleReccomendations(props: any) {
                   </div>
                 </div>
               </div>
-              <button className="text-blue-700 text-center text-base font-bold leading-6 whitespace-nowrap justify-center items-center border border-[color:var(--Blue-Bold,#0057DA)] bg-white mt-8 px-16 py-3 rounded-md border-solid max-md:px-5">
+              <button
+                onClick={() => {
+                  alert("simulating lesson...");
+                }}
+                className="text-blue-700 text-center text-base font-bold leading-6 whitespace-nowrap justify-center items-center border border-[color:var(--Blue-Bold,#0057DA)] bg-white mt-8 px-16 py-3 rounded-md border-solid max-md:px-5"
+              >
                 Start now
               </button>
             </div>
@@ -45,7 +50,12 @@ export default function ModuleReccomendations(props: any) {
                   </div>
                 </div>
               </div>
-              <button className="text-blue-700 text-center text-base font-bold leading-6 whitespace-nowrap justify-center items-center border border-[color:var(--Blue-Bold,#0057DA)] bg-white mt-8 px-16 py-3 rounded-md border-solid max-md:px-5">
+              <button
+                onClick={() => {
+                  alert("simulating lesson...");
+                }}
+                className="text-blue-700 text-center text-base font-bold leading-6 whitespace-nowrap justify-center items-center border border-[color:var(--Blue-Bold,#0057DA)] bg-white mt-8 px-16 py-3 rounded-md border-solid max-md:px-5"
+              >
                 Start now
               </button>
             </div>
