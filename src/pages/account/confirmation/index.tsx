@@ -16,7 +16,6 @@ export default function Home() {
   return (
     <div>
       <main className="bg-white flex flex-col px-5">
-        <OnboardingProgress />
         <OnboardingIntro />
       </main>
     </div>
