@@ -26,28 +26,15 @@ const Card = ({ title, children }: any) => {
 };
 
 const ProgressBar = ({ xp }: any) => {
-  const loading = keyframes`
-    0% {
-      width: 0;
-    }
-    100% {
-      width: ${Math.max(xp % 100, 5)}%;
-    }
-  `;
-
-  const LoadingDiv = styled.div`
-    animation: ${loading} 5s ease-in-out;
-    background-color: var(--color-red);
-  `;
-
   return (
     <div className="items-stretch self-stretch flex flex-col pt-1">
       <section
         style={{ backgroundColor: "var(--color-light-red)" }}
         className="bg-neutral-400 flex w-full flex-col items-stretch rounded-3xl"
       >
-        <LoadingDiv
-          className="flex min-h-[35px] w-1/2 flex-col rounded-3xl"
+        <div
+          style={{ backgroundColor: "var(--color-red)", width: `${xp % 100}%` }}
+          className="flex min-h-[35px] flex-col rounded-3xl"
           role="presentation"
           aria-label="Content"
         />
@@ -150,10 +137,12 @@ const SpendingCard = () => {
   );
 };
 
-const Welcome = () => {
+const Welcome = (props: { firstName: string }) => {
   return (
     <div className="mt-10 bg-white border border-white rounded-xl text-blue-500 p-4">
-      <h1 className="text-2xl font-bold text-blue-600">Good morning, John!</h1>
+      <h1 className="text-2xl font-bold text-blue-600">
+        Good morning, {props.firstName ?? ""}!
+      </h1>
       <h2 className="text-lg mt-2">
         Begin your week preparing for your financial future.
       </h2>
@@ -173,11 +162,12 @@ const Progress = () => {
         {}
       );
 
-      console.log(res);
-      alert();
+      const body = await res.json();
 
-      fetchUser();
+      setXp(Utils.computeXpFromProgress(body.progress));
     };
+
+    fetchUser();
   }, []);
 
   return (
@@ -193,7 +183,7 @@ const Progress = () => {
               alt="Level Icon"
             />
             <div className="text-blue-500 text-xl font-bold leading-7 grow whitespace-nowrap">
-              Level {xp / 100 + 1}
+              Level {Math.floor(xp / 100) + 1}
             </div>
           </div>
           <ProgressMessage xp={xp} />
@@ -259,6 +249,11 @@ export default function UpdatedComponent(props: any) {
   const [rec1, setRec1] = useState("Creating a budget");
   const [rec2, setRec2] = useState("Credit 101");
 
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+  const [avatarIndex, setAvatarIndex] = useState(0);
+
   const handleMouseEnter = (hoverNumber: number) => {
     setLastHovered(hoverNumber);
     if (hoverNumber === 1) setHover1(true);
@@ -298,6 +293,11 @@ export default function UpdatedComponent(props: any) {
           setRec1(data.financialInterests[randomIndex1]);
           setRec2(data.financialInterests[randomIndex2]);
         }
+
+        setFirstName(data.firstName);
+        setLastName(data.lastName);
+
+        setAvatarIndex(data.avatar);
       } else {
         console.log("error updating user");
       }
@@ -308,9 +308,9 @@ export default function UpdatedComponent(props: any) {
   return (
     <main className="bg-white">
       <section className="flex max-md:flex-col max-md:items-stretch max-md:gap-0">
-        <Sidebar />
+        <Sidebar name={firstName + " " + lastName} avatarIndex={avatarIndex} />
         <section className="bg-zinc-100 flex flex-col px-6 rounded-3xl max-md:px-5 pl-10">
-          <Welcome></Welcome>
+          <Welcome firstName={firstName}></Welcome>
           <Progress></Progress>
 
           <div className="self-stretch mt-10 mb-6 max-md:max-w-full">

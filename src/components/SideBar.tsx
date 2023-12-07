@@ -64,8 +64,14 @@ const NavigationButton = ({
   );
 };
 
-const Sidebar = () => {
+const Sidebar = (props: { name: string; avatarIndex: number }) => {
   const [activeButton, setActiveButton] = useState("Dashboard");
+
+  const avatarUrls = [
+    "https://api.dicebear.com/7.x/adventurer/svg?seed=Mittens",
+    "https://api.dicebear.com/7.x/adventurer/svg?seed=Fluffy",
+    "https://api.dicebear.com/7.x/adventurer/svg?seed=Whiskers",
+  ];
 
   const menuItems = [
     {
@@ -128,8 +134,8 @@ const Sidebar = () => {
         </div>
         <div className="mt-auto">
           <Profile
-            username="John Smith"
-            imageUrl="https://api.dicebear.com/7.x/adventurer/svg?seed=Mittens"
+            username={props.name ?? ""}
+            imageUrl={avatarUrls[props.avatarIndex]}
           ></Profile>
         </div>
       </header>
