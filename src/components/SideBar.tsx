@@ -3,6 +3,7 @@ import logo from "../assets/logo.png";
 import Image from "next/image";
 
 import React from "react";
+import { useRouter } from "next/router";
 
 interface ProfileProps {
   username: string;
@@ -10,13 +11,21 @@ interface ProfileProps {
 }
 
 const Profile: React.FC<ProfileProps> = ({ username, imageUrl }) => {
+  const router = useRouter();
+
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center">
         <img src={imageUrl} alt="Profile" className="w-12 h-12 rounded-full" />
         <span className="ml-2 text-lg font-bold">{username}</span>
       </div>
-      <button className="focus:outline-none">
+      <button
+        className="focus:outline-none"
+        onClick={() => {
+          localStorage.setItem("email", "");
+          router.push("/");
+        }}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -28,8 +37,8 @@ const Profile: React.FC<ProfileProps> = ({ username, imageUrl }) => {
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={2}
-            d="M12 6v0m0 6v0m0 6v0"
-          />
+            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+          ></path>
         </svg>
       </button>
     </div>
@@ -95,13 +104,13 @@ const Sidebar = (props: { name: string; avatarIndex: number }) => {
       alt: "Achievements",
       href: "achievements",
     },
-    // {
-    //   name: "Settings",
-    //   imageSrc:
-    //     "https://cdn.builder.io/api/v1/image/assets/TEMP/899f0a1f-0364-4caf-b4eb-a94632a014cd?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
-    //   alt: "More",
-    //   href: "/postDashboard",
-    // },
+    {
+      name: "Settings",
+      imageSrc:
+        "https://cdn.builder.io/api/v1/image/assets/TEMP/899f0a1f-0364-4caf-b4eb-a94632a014cd?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
+      alt: "More",
+      href: "/postDashboard",
+    },
   ];
 
   return (
