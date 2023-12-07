@@ -71,7 +71,7 @@ export default function OnboardingComponent(props: any) {
           mattis ligula consectetur, ultrices mauris.
         </div>
         <a
-          href="/postDashboard"
+          href="/dashboard"
           className="text-white text-center text-2xl font-semibold leading-6 whitespace-nowrap justify-center items-center bg-zinc-600 self-center w-[339px] max-w-full mt-14 px-5 py-6 rounded-lg max-md:mt-10"
         >
           Go to Dashboard

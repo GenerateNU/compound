@@ -79,14 +79,14 @@ const Sidebar = (props: { name: string; avatarIndex: number }) => {
       imageSrc:
         "https://cdn.builder.io/api/v1/image/assets/TEMP/323e6bd4-41f9-441a-a6ec-2f261eaa7530?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
       alt: "Dashboard",
-      href: "/postDashboard",
+      href: "/dashboard",
     },
     {
       name: "Curriculum",
       imageSrc:
         "https://cdn.builder.io/api/v1/image/assets/TEMP/50304736-f900-45c0-8ec4-b8688c0f6fa3?apiKey=af7b8d767d8745b3a433de5edc8cf82c&",
       alt: "Curriculum",
-      href: "/postDashboard",
+      href: "/curriculum",
     },
     {
       name: "Achievements",

@@ -43,7 +43,7 @@ function FinancialLiteracyForm(props: any) {
     if (res.ok) {
       console.log("user found, logging in, redirecting to dashboard");
       localStorage.setItem("email", email); // Store email to localStorage
-      router.push("/postDashboard");
+      router.push("/dashboard");
     } else {
       console.log("user not found, creating user and redirecting to sign up ");
       await createUser();

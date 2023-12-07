@@ -1,9 +1,8 @@
-import Dashboard from "@/components/Dashboard";
-
-export default function DashboardPage(): JSX.Element {
+import UpdatedComponent from "@/components/PostDashboard";
+export default function Home() {
   return (
     <div>
-      <Dashboard />
+      <UpdatedComponent />
     </div>
   );
 }

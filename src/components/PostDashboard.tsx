@@ -6,6 +6,7 @@ import styled, { keyframes } from "styled-components";
 import ModuleRecommendations from "./ModuleReccomendations";
 import ModuleProgressIcon from "./ModuleProgressIcon";
 import Bruh from "./BlahbittyBlah";
+import Achievment from "./Achievment";
 
 // Card.jsx - Base card component
 const Card = ({ title, children }: any) => {
@@ -182,39 +183,10 @@ const Progress = (props: { xp: number }) => {
         </a>
       </div>
       <div className="justify-between items-stretch content-start flex-wrap flex gap-5 mt-6 p-4 max-md:justify-center">
-        <div className="items-stretch flex grow basis-[0%] flex-col">
-          <h3 className="text-black text-center text-sm font-semibold leading-5 tracking-wide">
-            Insert Title
-          </h3>
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/d7e1482f-9380-4762-9ab8-285146500472?apiKey=af7b8d767d8745b3a433de5edc8cf82c&"
-            className="aspect-[1.01] object-contain object-center w-[84px] overflow-hidden self-center mt-3"
-            alt="Achievement Image"
-          />
-        </div>
-        <div className="items-stretch flex grow basis-[0%] flex-col">
-          <h3 className="text-black text-center text-sm font-semibold leading-5 tracking-wide">
-            Insert Title
-          </h3>
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/999b4294-3242-4427-b148-81aa6b7ea395?apiKey=af7b8d767d8745b3a433de5edc8cf82c&"
-            className="aspect-[1.01] object-contain object-center w-[84px] overflow-hidden self-center mt-3"
-            alt="Achievement Image"
-          />
-        </div>
-        <div className="items-stretch flex grow basis-[0%] flex-col">
-          <h3 className="text-black text-center text-sm font-semibold leading-5 tracking-wide">
-            Insert Title
-          </h3>
-          <img
-            loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/ca2f6dd7-1ddd-4c7a-9e07-d960b9e25558?apiKey=af7b8d767d8745b3a433de5edc8cf82c&"
-            className="aspect-[1.01] object-contain object-center w-[84px] overflow-hidden self-center mt-3"
-            alt="Achievement Image"
-          />
-        </div>
+        {props.xp >= 0 && <Achievment name="Ready to go!" />}
+        {props.xp >= 100 && <Achievment name="Baby steps" />}
+        {props.xp >= 200 && <Achievment name="Persistence" />}
+        {props.xp >= 300 && <Achievment name="Financial guru" />}
       </div>
     </div>
   );
