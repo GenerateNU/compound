@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { Button } from "@chakra-ui/react";
+import { FcGoogle } from "react-icons/fc";
+import { signIn } from "next-auth/react";
 
 function FinancialLiteracyForm(props: any) {
   const [email, setEmail] = useState("");
@@ -137,9 +140,9 @@ function FinancialLiteracyForm(props: any) {
               <div className="text-black text-xl font-bold leading-6 self-center whitespace-nowrap mt-12 max-md:mt-10">
                 or
               </div>
-              <button className="text-zinc-900 text-center text-base leading-6 items-stretch self-center border-[color:var(--Medium-gray,#B2B9C0)] bg-white w-[408px] max-w-full mt-11 px-4 py-2 border-2 border-solid max-md:mt-10">
+              <Button  leftIcon={<FcGoogle />} onClick={() => signIn("google")} className="text-zinc-900 text-center text-base leading-6 items-stretch self-center border-[color:var(--Medium-gray,#B2B9C0)] bg-white w-[408px] max-w-full mt-11 px-4 py-2 border-2 border-solid max-md:mt-10">
                 Continue with Google
-              </button>
+              </Button>
             </div>
           </div>
         </div>
