@@ -25,5 +25,7 @@ model User {
   email               String           @unique
   avatar              Int              @default(0)
   financialInterests  String[]         @default([])
-  progress            Boolean[]        @default([false, false, false, false, false, false, false, false, false, false, false, false])
+  module1Progress     Int              @default(0)
+  module2Progress     Int              @default(0)
+  module3Progress     Int              @default(0)
 }
