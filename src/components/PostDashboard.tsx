@@ -21,12 +21,41 @@ const Card = ({ title, children }: any) => {
   );
 };
 
+const ProgressBar = ({ xp }: any) => {
+  return (
+    <div className="items-stretch self-stretch flex flex-col pt-1">
+      <section
+        style={{ backgroundColor: "var(--color-light-red)" }}
+        className="bg-neutral-400 flex w-full flex-col items-stretch rounded-3xl"
+      >
+        <div
+          className="flex min-h-[35px] w-1/2 flex-col rounded-3xl"
+          role="presentation"
+          aria-label="Content"
+          style={{
+            width: `${Math.max(xp % 100, 5)}%`,
+            backgroundColor: "var(--color-red)",
+          }}
+        />
+      </section>
+    </div>
+  );
+};
+
+const ProgressMessage = ({ xp }: any) => {
+  return (
+    <div className="text- text-sm font-semibold leading-5 tracking-wide self-center grow whitespace-nowrap my-auto">
+      {100 - (xp % 100)} xp to next level
+    </div>
+  );
+};
+
 const OtherToolsCard = ({ title, description, buttonName }: any) => {
   return (
-    <div className="relative flex flex-col items-stretch w-full ml-5 max-md:w-full max-md:ml-0">
+    <div className="relative flex flex-col items-stretch w-fullmax-md:w-full max-md:ml-0">
       <div
         className="w-full absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6 h-10 rounded-t-xl"
-        style={{ backgroundColor: "#8EE5CB" }}
+        style={{ backgroundColor: "var(--color-mint)" }}
       />
       <div className="items-stretch self-stretch bg-white flex grow flex-col w-full mx-auto px-7 py-6 rounded-2xl max-md:mt-6 max-md:px-5">
         <h2 className="mt-5 text-black text-xl font-bold leading-7 whitespace-nowrap">
@@ -37,12 +66,12 @@ const OtherToolsCard = ({ title, description, buttonName }: any) => {
         </p>
         <div className="h-10"></div>
         <div className="h-10"></div>
-        <a
-          href="#"
+        <button
+          onClick={() => alert("Coming soon!")}
           className="mt-auto text-zinc-600 text-center text-base font-medium leading-6 whitespace-nowrap justify-center items-stretch bg-white mt-7 px-5 py-2.5 rounded-lg border-2 border-solid border-zinc-600 max-md:pr-px"
         >
           {buttonName}
-        </a>
+        </button>
       </div>
     </div>
   );
@@ -128,9 +157,7 @@ const Progress = () => {
               Level {xp / 100 + 1}
             </div>
           </div>
-          <div className="text-zinc-500 text-sm font-semibold leading-5 tracking-wide self-center grow whitespace-nowrap my-auto">
-            {100 - (xp % 100)} xp to next level
-          </div>
+          <ProgressMessage xp={xp} />
         </div>
         <div className="items-stretch content-center flex-wrap bg-zinc-300 self-stretch flex basis-[0%] flex-col p-2 rounded-2xl min-w-fit">
           <div className="justify-between items-stretch flex gap-2 shrink-0">
@@ -146,16 +173,7 @@ const Progress = () => {
           </div>
         </div>
       </div>
-      <div className="items-stretch self-stretch flex flex-col pt-1">
-        <section className="bg-neutral-400 flex w-full flex-col items-stretch rounded-3xl">
-          <div
-            className="bg-zinc-600 flex min-h-[35px] w-1/2 flex-col rounded-3xl"
-            role="presentation"
-            aria-label="Content"
-            style={{ width: `${Math.max(xp % 100, 5)}%` }}
-          />
-        </section>
-      </div>
+      <ProgressBar xp={xp} />
       <div className="justify-between items-stretch content-center gap-y-2 flex-wrap flex gap-5 mt-12 max-md:mt-10">
         <h2 className="text-black text-xl font-bold leading-7">Achievements</h2>
         <a
