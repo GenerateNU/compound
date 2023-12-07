@@ -12,6 +12,7 @@
   --color-light-red: #FACDCD;
   --color-yellow: #FECA44;
   --color-purple: #B079E7;
+  --color-gray: #EAEEED;
 }
 
 @media (prefers-color-scheme: dark) {
