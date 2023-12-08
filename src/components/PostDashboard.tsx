@@ -323,7 +323,10 @@ export default function UpdatedComponent(props: any) {
   return (
     <main className="bg-white">
       <section className="flex max-md:flex-col max-md:items-stretch max-md:gap-0">
-        <Sidebar name={firstName + " " + lastName} avatarIndex={avatarIndex - 1} />
+        <Sidebar
+          name={firstName + " " + lastName}
+          avatarIndex={avatarIndex - 1}
+        />
         <section className="bg-zinc-100 flex flex-col px-6 rounded-3xl max-md:px-5 pl-10">
           <Welcome firstName={firstName}></Welcome>
           <Progress xp={xp} />

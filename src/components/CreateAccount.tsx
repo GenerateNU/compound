@@ -6,15 +6,12 @@ import {
   Flex,
   FormControl,
   Input,
-  Text,
   FormLabel,
-  Divider,
   InputRightElement,
   IconButton,
   InputGroup,
 } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
-import { signIn } from "next-auth/react";
 import { FaEyeSlash, FaEye } from "react-icons/fa";
 
 function FinancialLiteracyForm(props: any) {
@@ -154,7 +151,7 @@ function FinancialLiteracyForm(props: any) {
               </div>
               <Button
                 leftIcon={<FcGoogle />}
-                onClick={() => signIn("google")}
+                onClick={() => alert("coming soon")}
                 className="text-zinc-900 text-center text-base leading-6 items-stretch self-center border-[color:var(--Medium-gray,#B2B9C0)] bg-white w-[408px] max-w-full px-4 py-2 border-2 border-solid max-md:mt-10"
               >
                 Continue with Google
